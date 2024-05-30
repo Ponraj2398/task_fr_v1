@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate:ital@0;1&display=swap');
+
+* {
+	box-sizing: border-box;
+	font-family: "Mate", serif;
+	font-weight: 500;
+	font-style: normal;
+}
+
+/* .signup-col{
+	background-image: url('https://wallpaper.dog/large/10771800.jpg');
+	background-size: cover;
+	background-position: center;
+} */
+
+.primary {
+	background-color: rgb(122, 182, 66);
+  }
+  
+  .default {
+	background-color: rgb(255, 255, 255); /* or any other default color */
+  }
