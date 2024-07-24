@@ -1,259 +1,212 @@
-import './Login.css'
-import React, { useState } from 'react';
-import { Container, Row, Col, Button, Offcanvas, Nav,Form, Alert } from 'react-bootstrap';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Modal from 'react-bootstrap/Modal';
+import React, { useEffect, useState } from 'react';
+import './App.css'; // Import your component-specific CSS file
+import img from '../src/images/pizzahutimg1.jpg'
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
-const IndexPage = () => {
-   const [showSidebar, setShowSidebar] = useState(false);
+const IndexComponent = () => {
 
-   const handleToggleSidebar = () => setShowSidebar(!showSidebar);
-   const [activeButton, setActiveButton] = useState('Templates');
+    const [cart, setCart] = useState([]);
+    const [favorites, setFavorites] = useState([]);
+    const [additems, setItems] = useState([]);
+    const navigate = useNavigate();
 
-   const handleButtonClick = (buttonName) => {
-      setActiveButton(buttonName);
-   };
-   const [activeTab, setActiveTab] = useState('Templates');
-   const handleTabSelect = (tab) => {
-      setActiveTab(tab);
-   };
-   // Search Query
-   const [searchQuery, setSearchQuery] = useState('');
-   const [additems, setItems] = useState([]);
-   const handleSearchChange = (e) => {
-      setSearchQuery(e.target.value);
-   };
-   var [add, setAdd] = useState();
-   add = additems.filter(product =>
-      product.name.toLowerCase().includes(searchQuery.toLowerCase())
-   );
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 
-   const [show, setShow] = useState(false);
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
-   const [errorMessage, setErrorMessage] = useState('');
-   const handleFileChange = (event) => {
-      const selectedFile = event.target.files[0];
-      if (selectedFile && selectedFile.type === 'text/html') {
-         setFile(selectedFile);
-         setErrorMessage('');
-      } else {
-         setFile(null);
-         setErrorMessage('Only .html files are allowed.');
-      }
-   };
-   const [file, setFile] = useState(null);
-   const createTemplate = async (event) => {
-      event.preventDefault();
-      if (!file) {
-         alert("Please select a file to upload.");
-         return;
-      }
-      try {
-         const formData = new FormData();
-         formData.append('file', file);
-         const userToken = localStorage.getItem("token");
-         const response = await fetch('https://contentcrafter.bulkpe.in/api/CreateTemplate', {
-            method: 'POST',
-            headers: {
-               'Authorization': `Bearer ${userToken}`
-            },
-            body: formData
-         });
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/api/product/list');
+            setItems(response.data);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+    const addToFavorite = (product) => {
+        setFavorites((prevFavorites) => {
+            if (prevFavorites.find((item) => item._id === product._id)) {
+                return prevFavorites.filter((item) => item._id !== product._id);
+            } else {
+                return [...prevFavorites, product];
+            }
+        });
+        console.log("Favorite Item Added..",product);
+    };
+    const addToCart = (product) => {
+        setCart(prevCart => {
+            const existingCartItem = prevCart.find(item => item._id === product._id);
+            if (existingCartItem) {
+                return prevCart.map(item =>
+                    item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
+                );
+            } else {
+                return [...prevCart, { ...product, quantity: 1 }];
+            }
+        });
+    };
 
-         if (!response.ok) {
-            throw new Error('Network response was not ok');
-         }
+    const increaseQuantity = (productId) => {
+        setCart(prevCart =>
+            prevCart.map(item =>
+                item._id === productId ? { ...item, quantity: item.quantity + 1 } : item
+            )
+        );
+    };
 
-         const data = await response.json();
-         console.log('Success:', data);
-         alert("Upload Successful...");
-         handleClose();
-      } catch (error) {
-         console.error('Error:', error);
-      }
-   };
-   return (
-      <div>
-         <Container fluid className="vh-100">
-            <Row className="vh-100">
-               <Col xs={12} md={2} className="d-none d-md-block" style={{ backgroundColor: 'rgb(58,58,58)' }}>
-                  {/* Sidebar content */}
-                  <div style={{ color: 'white' }} className='mt-5 d-flex flex-column justify-content-center align-items-center'>
-                     <h2>Logo</h2>
-                     <Container fluid className="h-100 text-center mt-5" style={{ fontSize: '22px' }}>
-                        <Row>
-                           {/* <ListGroup>
-                              <Nav className="flex-column"> */}
-                           <Col xs={12} className='mb-4'>
-                              <ListGroup.Item>
-                                 <Nav.Item className='w-100'>
-                                    <Nav.Link
-                                       active={activeTab === 'Templates'}
-                                       onClick={() => handleTabSelect('Templates')}
-                                       style={{ borderRadius: '20px', color: 'white', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: activeTab === 'Templates' ? 'rgb(122, 182, 66)' : 'rgb(58,58,58)', border: 'none' }}>
-                                       Templates
-                                    </Nav.Link>
-                                 </Nav.Item>
-                              </ListGroup.Item>
-                           </Col>
-                           <Col xs={12} className='mb-4'>
-                              <ListGroup.Item>
-                                 <Nav.Item className='w-100'>
-                                    <Nav.Link
-                                       active={activeTab === 'Pages'}
-                                       onClick={() => handleTabSelect('Pages')}
-                                       style={{ borderRadius: '20px', color: 'white', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: activeTab === 'Pages' ? 'rgb(122, 182, 66)' : 'rgb(58,58,58)', border: 'none' }}>
-                                       Pages
-                                    </Nav.Link>
-                                 </Nav.Item>
-                              </ListGroup.Item>
-                           </Col>
-                           <Col xs={12} className='mb-4'>
-                              <ListGroup.Item>
-                                 <Nav.Item className='w-100'>
-                                    <Nav.Link
-                                       active={activeTab === 'Settings'}
-                                       onClick={() => handleTabSelect('Settings')}
-                                       style={{ borderRadius: '20px', color: 'white', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: activeTab === 'Settings' ? 'rgb(122, 182, 66)' : 'rgb(58,58,58)', border: 'none' }}>
-                                       Settings
-                                    </Nav.Link>
-                                 </Nav.Item>
-                              </ListGroup.Item>
-                           </Col>
-                           {/* </Nav>
-                           </ListGroup> */}
-                        </Row>
-                     </Container>
-                  </div>
-
-               </Col>
-               <Col xs={12} md={10} className="bg-white mt-2">
-                  {/* Content page */}
-
-                  <Button className="d-block d-md-none" variant="outline-primary" style={{ float: 'left' }} onClick={handleToggleSidebar}>
-                     <i className="bi bi-list"></i>
-                  </Button>
-                  &nbsp;&nbsp;<strong className="d-block d-md-none" style={{ fontSize: '25px' }}>Logo</strong><br />
-                  <div className="tab-content" >
-                     <div className={`tab-pane fade ${activeTab === 'Templates' && 'show active'}`} id="templates-content" role="tabpanel">
-                        <Container fluid className='w-100'>
-                           <Row>
-                              <Col xs={4} md={2}>
-                              </Col>
-                              <Col xs={8} md={10} className="d-flex justify-content-end align-items-center">
-                                 <div style={{ marginRight: '50px' }}><Button style={{ borderRadius: '20px', width: '100px' }} onClick={handleShow}>Upload</Button></div>&nbsp;&nbsp;
-                                 {/* <div><input
-                                 type="search"
-                                 className='w-50'
-                                 placeholder="Search templates..."
-                                 value={searchQuery}
-                                 onChange={handleSearchChange}
-                                 style={{ marginRight:'150px',height: '38px', borderRadius: '20px', border: '2px solid grey' }}
-                              />
-                              </div> */}
-                              </Col>
-                           </Row>
-                        </Container>
-                        <Modal show={show} onHide={handleClose}>
-                           <Modal.Header closeButton>
-                              <Modal.Title>Upload a file</Modal.Title>
-                           </Modal.Header>
-                           <Modal.Body>
-                              {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-                              <Form onSubmit={createTemplate}>
-                                 <Form.Group controlId="formFile" className="mb-3">
-                                    {/* <Form.Label>Upload File</Form.Label> */}
-                                    <Form.Control type="file" onChange={handleFileChange} />
-                                 </Form.Group>
-                                 <div className='d-flex justify-content-center'><Button className='w-25' variant="primary" type="submit">
-                                    Upload
-                                 </Button> &nbsp;&nbsp;
-                                 <Button className='w-25' variant="outline-primary" type="reset">
-                                    Reset
-                                 </Button>
-                                 </div>
-                              </Form>
-                           </Modal.Body>
-                        </Modal>
-                        <br />
-                        <Container fluid>
-                           <Row>
-                              <Col xs={12} className='mb-3'>
-                                 <h3>Templates</h3>
-                              </Col>
-                              <Col xs={12}>
-                                 Template Lists
-                              </Col>
-                           </Row>
-                        </Container>
+    const decreaseQuantity = (productId) => {
+        setCart(prevCart =>
+            prevCart.map(item =>
+                item._id === productId && item.quantity > 0 ? { ...item, quantity: item.quantity - 1 } : item
+            )
+        );
+    };
 
 
-                     </div>
-                     <div className={`tab-pane fade ${activeTab === 'Pages' && 'show active'}`} id="pages-content" role="tabpanel">
-                        <p>Pages Content</p>
-                     </div>
-                     <div className={`tab-pane fade ${activeTab === 'Settings' && 'show active'}`} id="settings-content" role="tabpanel">
-                        <p>Settings Content</p>
-                     </div>
-                  </div>
-               </Col>
-            </Row>
-            <Offcanvas show={showSidebar} onHide={handleToggleSidebar} placement="end" style={{ backgroundColor: 'rgb(58,58,58)', color: 'white' }}>
-               <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Sidebar</Offcanvas.Title>
-               </Offcanvas.Header>
-               <Offcanvas.Body>
-                  {/* Sidebar content for mobile */}
-                  <div style={{ color: 'white' }} className='mt-5 d-flex flex-column justify-content-center align-items-center'>
-                     <h2>Logo</h2>
-                     <Container fluid className="vh-100 text-center mt-5" style={{ fontSize: '22px' }}>
-                        <Row>
-                           {/* <ListGroup>
-                              <Nav className="flex-column"> */}
-                           <Col xs={12} className='mb-4'>
-                              <ListGroup.Item>
-                                 <Nav.Item className='w-100'>
-                                    <Nav.Link
-                                       active={activeTab === 'Templates'}
-                                       onClick={() => handleTabSelect('Templates')}
-                                       style={{ borderRadius: '20px', color: 'white', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: activeTab === 'Templates' ? 'rgb(122, 182, 66)' : 'rgb(58,58,58)', border: 'none' }}>
-                                       Templates
-                                    </Nav.Link>
-                                 </Nav.Item>
-                              </ListGroup.Item>
-                           </Col>
-                           <Col xs={12} className='mb-4'>
-                              <ListGroup.Item>
-                                 <Nav.Item className='w-100'>
-                                    <Nav.Link
-                                       active={activeTab === 'Pages'}
-                                       onClick={() => handleTabSelect('Pages')}
-                                       style={{ borderRadius: '20px', color: 'white', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: activeTab === 'Pages' ? 'rgb(122, 182, 66)' : 'rgb(58,58,58)', border: 'none' }}>
-                                       Pages
-                                    </Nav.Link>
-                                 </Nav.Item>
-                              </ListGroup.Item>
-                           </Col>
-                           <Col xs={12} className='mb-4'>
-                              <ListGroup.Item>
-                                 <Nav.Item className='w-100'>
-                                    <Nav.Link
-                                       active={activeTab === 'Settings'}
-                                       onClick={() => handleTabSelect('Settings')}
-                                       style={{ borderRadius: '20px', color: 'white', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: activeTab === 'Settings' ? 'rgb(122, 182, 66)' : 'rgb(58,58,58)', border: 'none' }}>
-                                       Settings
-                                    </Nav.Link>
-                                 </Nav.Item>
-                              </ListGroup.Item>
-                           </Col>
-                        </Row>
-                     </Container>
-                  </div>
-               </Offcanvas.Body>
-            </Offcanvas>
-         </Container>
-      </div>
-   )
-}
-export default IndexPage;
+    const calculateItemTotal = (cartItem) => {
+        return cartItem.price * cartItem.quantity;
+    };
+
+    const subtotal = cart.reduce((acc, cartItem) => acc + cartItem.price * cartItem.quantity, 0);
+    const gst = (subtotal * 0.05).toFixed(2);
+    const deliveryCharges = cart.length > 0 ? 5 : 0;
+    const overallTotal = (parseFloat(subtotal) + parseFloat(gst) + deliveryCharges).toFixed(2);
+    const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+    const goToCheckoutPage = () => {
+        navigate('/checkout', { state: { cart, subtotal, gst, deliveryCharges, overallTotal } });
+    };
+    return (
+        <div>
+            <div className="logo">
+                <div><h2><strong className="box-pizza">Box Pizza</strong></h2></div>
+            </div>
+
+            <input type="checkbox" id="cart" />
+            <label htmlFor="cart" className="label-cart">
+                <i className="bi bi-cart3" style={{ color: '#fecb40', fontSize: '25px' }}>
+                    {cartItemCount > 0 && <span className="cart-item-count fs-6" style={{ position: 'absolute', top: '0px', color: 'black' }}>{cartItemCount}</span>}
+                </i>
+            </label>
+            <div className="sidebar">
+                <div className="sidebar-menu">
+                    <a href="#"><i className="bi bi-search fs-6"></i>
+                        Search</a>
+                </div>
+                {/* <div className="sidebar-content">
+                    <div className="search-bar">
+                        <input type="text" placeholder="Search..." />
+                        <i className="bi bi-search icon"></i>
+                    </div>
+                </div> */}
+                <div className="sidebar-menu">
+                    <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i>
+                        Home</a>
+                </div>
+
+                <div className="sidebar-menu">
+                    <a href="/signup"><i className="bi bi-person-circle fs-6"></i>
+                        Register</a>
+                </div>
+                <div className="sidebar-menu">
+                    <a href="/"><i className="bi bi-person-add fs-6"></i>
+                        Login</a>
+                </div>
+                <div className="sidebar-menu">
+                    <a href="#"><i className="bi bi-gear fs-6"></i>
+                        Settings</a>
+                </div>
+
+                <div className="sidebar-menu">
+                    {/* <a href="#">Logout</a> */}
+                    <a href="/"> <i className="bi bi-box-arrow-right fs-6"></i>
+                        Logout</a>
+                </div>
+
+            </div>
+            {/* Dashboard */}
+            <div className="dashborad" style={{ backgroundColor: '#fecb40' }}>
+                <div className="dashborad-items">
+                    <img src={img} alt="#" className="img-fluid" />
+                    <div className="dashboard-text">
+                        <h1><span>50% OFF</span><br /> Tasty Food <br /> On Your Hand</h1>
+                    </div>
+                </div>
+                <h3 className="dashboard-title">Recommended Food For You</h3>
+                <div className="dashboard-menu">
+                    <a href="#">Favorites</a>
+                    <a href="#">Best Seller</a>
+                    <a href="#">Near Me</a>
+                    <a href="#">Promotion</a>
+                    <a href="#">Top Rated</a>
+                    <a href="#">All</a>
+                </div>
+                <div className="dashboard-content">
+                    {
+                        Array.isArray(additems) && additems.slice(0, 100).map((product) => (
+                            // <div key={a.id}>
+                            <div key={product._id} className="dashboard-menus" style={{ backgroundColor: 'black' }}>
+                                <img src={`http://localhost:8080/public/data/uploads/${product.image}`} alt="#" className="img-fluid dash-image" style={{ overflow: 'hidden', width: '400px', height: '150px' }} />
+                                <div className="details">
+                                    <h5 style={{ fontSize: '15px' }}>{product.name}<span>Rs.{product.price}</span></h5>
+                                    <p><strong className="box-pizza">BOX PIZZA</strong> {product.description}</p>
+                                    <p className="time"><i className="bi bi-clock-fill"></i> 15-20mints</p>
+                                    <Button onClick={() => addToCart(product)} className="btn btn-danger">Add Item</Button>
+                                    <Button className='fav-item' onClick={() => addToFavorite(product)}>
+                                        <i className={favorites.some((item) => item._id === product._id) ? "bi bi-heart-fill fs-3" : "bi bi-heart fs-3"}></i>
+                                    </Button>
+                                </div>
+                            </div>
+                            // </div>
+                        ))
+                    }
+                </div>
+            </div>
+            {/* Order dashboard */}
+            <div className="dashboard-order">
+                <h3>Order-Menu</h3>
+                <div className="order-address">
+                    <p>Delivery Address</p>
+                    <h5>130 Kalavasal Byepass Road, Madurai-05</h5>
+                </div>
+                <div className="order-time">
+                    <i className="bi bi-clock-fill"></i> 30 mins <i className="bi bi-geo-alt-fill"> 2 km</i>
+                </div>
+                <div className="order-wrapper">
+                    {cart.map((cartItem) => (
+                        <div key={cartItem._id} className="order-card">
+                            <img src={`http://localhost:8080/public/data/uploads/${cartItem.image}`} className="order-img" alt="#" />
+                            <div className="order-details">
+                                <p>{cartItem.name}</p>
+                                <div>
+                                    <button className="btn btn-danger w-25" onClick={() => decreaseQuantity(cartItem._id)}>-</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span>{cartItem.quantity}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button className="btn btn-danger w-25" onClick={() => increaseQuantity(cartItem._id)}>+</button>
+                                </div>
+                            </div>
+                            <span className="order-price">Rs.{calculateItemTotal(cartItem)}</span>
+                        </div>
+                    ))}
+                </div>
+                <hr className="divider" />
+                <div className="order-total">
+                    <p>Subtotal <span>Rs.{subtotal.toFixed(2)}</span></p>
+                    <p>Tax (5%) <span>Rs.{gst}</span></p>
+                    <p>Delivery Charges: <span>Rs.{deliveryCharges}</span></p>
+                    <div className="promo">
+                        <input type="text" className="input-promo" name="floatingInput" id="floatingInput" placeholder="Apply Voucher" />
+                        <button className="button-promo">Find Promo</button>
+                    </div>
+                    <hr className="divider" />
+                    <p>Total <span>Rs.{overallTotal}</span></p>
+                </div>
+                <button className="checkout" onClick={goToCheckoutPage}>Checkout</button>
+            </div>
+        </div>
+    );
+};
+
+export default IndexComponent;

@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Googleimg from '../src/images/googleimg.png'
 import Appleimg from '../src/images/appleimg.png'
-import loginimg from '../src/images/loginimg.png'
+import loginimg from '../src/images/download.png'
 import { InputGroup } from "react-bootstrap";
 import { BiShow, BiHide } from "react-icons/bi";
 import * as formik from "formik";
@@ -47,7 +47,7 @@ const SignUpForm = () => {
         // event.preventDefault();
         console.log("SUBMITTING FORM:", val);
         try {
-            const response = await fetch("https://contentcrafter.bulkpe.in/api/signup", {
+            const response = await fetch("http://localhost:8080/register/add", {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -84,7 +84,7 @@ const SignUpForm = () => {
                     </Col>
                     {/* {isLogin ? ( */}
                     {/* ) : ( */}
-                        <Col xs={{ span: 12, order: 1 }} md={{ span: 6, order: 2 }} className="mt-5 d-flex flex-column justify-content-center align-items-center">
+                        <Col xs={{ span: 12, order: 1 }} md={{ span: 6, order: 2 }} className="mt-5 d-flex flex-column justify-content-center align-items-center text-start">
                             <h1><strong>Sign up</strong></h1><br />
                             <Formik
                                 validationSchema={schema}

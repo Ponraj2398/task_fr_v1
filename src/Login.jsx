@@ -5,7 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import Googleimg from '../src/images/googleimg.png'
 // import Appleimg from '../src/images/appleimg.png'
-import loginimg from '../src/images/loginimg.png'
+// import loginimg from '../src/images/loginimg.png'
+import loginimg from '../src/images/download.png'
 import { InputGroup } from "react-bootstrap";
 import { BiShow, BiHide } from "react-icons/bi";
 import * as formik from "formik";
@@ -56,45 +57,75 @@ const Login = () => {
   }
   const handleSubmit = async (val, { setSubmitting }) => {
     // event.preventDefault();
-    console.log("SUBMITTING FORM:", val);
-    try {
-      const response = await fetch("https://contentcrafter.bulkpe.in/api/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(val),
-      });
-
-      const responseData = await response.json();
-
-      if (response.ok) {
-        console.log("Fetched data:", responseData);
-        setLoginData(responseData);
-        if (responseData.token) {
-          // Storing token in localStorage
-          localStorage.setItem("token", responseData.token);
-          // Redirecting to index page
-          window.location.href = "/indexpage";
-        } else {
-          alert("Token not found in response");
-        }
-        if (responseData.result && responseData.result.phone === val.phone && responseData.result.password === val.password) {
-          alert("Login Successful...");
-          // Optionally navigate to a different page after successful login
-          navigate("/indexpage");
-        } else {
-          alert("Invalid Credentials");
-        }
-      } else {
-        alert(responseData.message || "Login failed");
-      }
-    } catch (e) {
-      console.log("Error:", e);
-      alert("An error occurred during login. Please try again.");
-    } finally {
-      setSubmitting(false);
+    // console.log("SUBMITTING FORM:", val);
+    if (val.phone === '9629743994' && val.password === 'Admin@123') {
+      // Perform authentication logic (e.g., set a token in localStorage)
+      console.log('Admin signed in successfully!');
+      navigate('/admin');
     }
+    else{
+      try {
+        const response = await fetch("http://localhost:8080/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(val),
+        });
+  
+        const responseData = await response.json();
+  
+        // if (response.ok) {
+        //   console.log("Fetched data:", responseData);
+        //   setLoginData(responseData);
+        //   if (responseData.token) {
+        //     localStorage.setItem("token", responseData.token);
+        //     window.location.href = "/indexpage";
+        //   } else {
+        //     alert("Token not found in response");
+        //   }
+        //   if (responseData.result && responseData.result.phone === val.phone && responseData.result.password === val.password) {
+        //     alert("Login Successful...");
+        //     navigate("/indexpage");
+        //   } else {
+        //     alert("Invalid Credentials");
+        //   }
+        // } else {
+        //   alert(responseData.message || "Login failed");
+        // }
+        if (responseData) {
+          console.log("Response data:", responseData);
+          setLoginData(responseData);
+          if (responseData.token) {
+            localStorage.setItem("token", responseData.token);
+            navigate("/indexpage");
+          } else {
+            alert("Token not found in response");
+          }
+          // if (responseData.apiStatus === true) {
+          //   console.log("API call successful:", responseData.message);
+          //   if (responseData.token) {
+          //     localStorage.setItem("token", responseData.token);
+          //     navigate("/indexpage");
+          //   } else {
+          //     alert("Token not found in response");
+          //   }
+          // } else {
+          //   console.error("API call failed:", responseData.message);
+          //   alert(responseData.message || "API status is false");
+          // }
+        } else {
+          console.error("HTTP error:", responseData.message);
+          alert(responseData.message || "Request failed");
+        }
+      } catch (e) {
+        console.log("Error:", e);
+        alert("An error occurred during login. Please try again.");
+      } finally {
+        setSubmitting(false);
+      }
+    }
+    
   };
   return (
     <div>
@@ -111,7 +142,7 @@ const Login = () => {
             </div>
           </Col>
           {/* {isLogin ? ( */}
-          <Col xs={{ span: 12, order: 1 }} md={{ span: 6, order: 2 }} className="mt-5 d-flex flex-column justify-content-center align-items-center" >
+          <Col xs={{ span: 12, order: 1 }} md={{ span: 6, order: 2 }} className="mt-5 d-flex flex-column justify-content-center align-items-center text-start" >
             <h1><strong>Login</strong></h1><br />
             <Formik
               validationSchema={schema}
@@ -161,7 +192,7 @@ const Login = () => {
                 </Form>
               )}
             </Formik><br />
-            <p>Create a New account?&nbsp;&nbsp;<a onClick={handleToggle} style={{ textDecoration: 'none',cursor:'pointer' }}><strong style={{ color: 'rgb(75,132,87)' }}>Signup</strong></a></p>
+            <p>Create a New account?&nbsp;&nbsp;<a onClick={handleToggle} style={{ textDecoration: 'none', cursor: 'pointer' }}><strong style={{ color: 'rgb(75,132,87)' }}>Signup</strong></a></p>
           </Col>
           {/* ) : ( */}
           {/* )} */}

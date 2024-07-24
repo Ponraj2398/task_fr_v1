@@ -1,0 +1,15 @@
+.payment-container {
+    margin-top: 50px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.payment-container h2 {
+    margin-bottom: 20px;
+}
+
+.payment-container .form-group {
+    margin-bottom: 15px;
+}
