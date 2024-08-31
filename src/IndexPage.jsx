@@ -93,7 +93,7 @@ const IndexComponent = () => {
             </label>
             <div className="sidebar">
                 <div className="sidebar-menu">
-                    <a href="#"><i className="bi bi-search fs-6"></i>
+                    <a><i className="bi bi-search fs-6"></i>
                         Search</a>
                 </div>
                 {/* <div className="sidebar-content">
@@ -116,7 +116,7 @@ const IndexComponent = () => {
                         Login</a>
                 </div>
                 <div className="sidebar-menu">
-                    <a href="#"><i className="bi bi-gear fs-6"></i>
+                    <a><i className="bi bi-gear fs-6"></i>
                         Settings</a>
                 </div>
 
@@ -137,12 +137,12 @@ const IndexComponent = () => {
                 </div>
                 <h3 className="dashboard-title">Recommended Food For You</h3>
                 <div className="dashboard-menu">
-                    <a href="#">Favorites</a>
-                    <a href="#">Best Seller</a>
-                    <a href="#">Near Me</a>
-                    <a href="#">Promotion</a>
-                    <a href="#">Top Rated</a>
-                    <a href="#">All</a>
+                    <a>Favorites</a>
+                    <a>Best Seller</a>
+                    <a>Near Me</a>
+                    <a>Promotion</a>
+                    <a>Top Rated</a>
+                    <a>All</a>
                 </div>
                 <div className="dashboard-content">
                     {
