@@ -47,7 +47,7 @@ const SignUpForm = () => {
         // event.preventDefault();
         console.log("SUBMITTING FORM:", val);
         try {
-            const response = await fetch("http://localhost:8080/register/add", {
+            const response = await fetch("https://task-backend-v1-fkb7.onrender.com/register/add", {
                 headers: {
                     "Content-Type": "application/json",
                 },

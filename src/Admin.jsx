@@ -44,7 +44,7 @@ function Admin() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/product/list');
+            const response = await axios.get('https://task-backend-v1-fkb7.onrender.com/api/product/list');
             setProducts(response.data);
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -75,7 +75,7 @@ function Admin() {
                 formDataToSend.append('name', data.name);
                 formDataToSend.append('description', data.description);
                 formDataToSend.append('price', data.price);
-                const response = await axios.post('http://localhost:8080/api/product/insert', formDataToSend, {
+                const response = await axios.post('https://task-backend-v1-fkb7.onrender.com/api/product/insert', formDataToSend, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -117,7 +117,7 @@ function Admin() {
         formData.append('image', editProduct.image);
 
         try {
-            const response = await fetch(`http://localhost:8080/api/product/update/${editProduct._id}`, {
+            const response = await fetch(`https://task-backend-v1-fkb7.onrender.com/api/product/update/${editProduct._id}`, {
                 method: 'PUT',
                 body: formData
             });
@@ -139,7 +139,7 @@ function Admin() {
     };
     const deleteProduct = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8080/api/product/delete/${id}`);
+            const response = await axios.delete(`https://task-backend-v1-fkb7.onrender.com/api/product/delete/${id}`);
             if (response.status === 200) {
                 // Update the products state to remove the deleted product
                 setProducts(products.filter((product) => product._id !== id));
@@ -208,7 +208,7 @@ function Admin() {
                                             editProduct.image && (
                                                 <div className="text-center mt-3">
                                                     <img
-                                                        src={`http://localhost:8080/public/data/uploads/${editProduct.image}`}
+                                                        src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${editProduct.image}`}
                                                         alt="Selected"
                                                         style={{ maxWidth: '100%', height: 'auto' }}
                                                     />
@@ -347,7 +347,7 @@ function Admin() {
                                                                             <td className="edit-delete-table fw-bold">{index + 1}</td>
                                                                             <td className="d-flex justify-content-center">
                                                                                 <img
-                                                                                    src={`http://localhost:8080/public/data/uploads/${product.image}`}
+                                                                                    src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
                                                                                     alt="#"
                                                                                     style={{ width: '100px', height: 'auto' }}
                                                                                 />
@@ -409,7 +409,7 @@ function Admin() {
                                                                         <tr key={product._id}>
                                                                             <td className="edit-delete-table fw-bold">{index + 1}</td>
                                                                             <td className="d-flex justify-content-center">
-                                                                                <img src={`http://localhost:8080/public/data/uploads/${product.image}`} alt="Product" style={{ width: '100px', height: 'auto' }} />
+                                                                                <img src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`} alt="Product" style={{ width: '100px', height: 'auto' }} />
                                                                             </td>
                                                                             <td className="edit-delete-table">{product.name}</td>
                                                                             <td className="edit-delete-table">{product.description}</td>

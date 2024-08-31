@@ -21,7 +21,7 @@ const IndexComponent = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/product/list');
+            const response = await axios.get('https://task-backend-v1-fkb7.onrender.com/api/product/list');
             setItems(response.data);
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -178,7 +178,7 @@ const IndexComponent = () => {
                 <div className="order-wrapper">
                     {cart.map((cartItem) => (
                         <div key={cartItem._id} className="order-card">
-                            <img src={`http://localhost:8080/public/data/uploads/${cartItem.image}`} className="order-img" alt="#" />
+                            <img src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${cartItem.image}`} className="order-img" alt="#" />
                             <div className="order-details">
                                 <p>{cartItem.name}</p>
                                 <div>

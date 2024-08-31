@@ -32,7 +32,7 @@ const Checkout = () => {
                                 <tr key={cartItem._id}>
                                     <td>
                                         <img
-                                            src={`http://localhost:8080/public/data/uploads/${cartItem.image}`}
+                                            src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${cartItem.image}`}
                                             className="order-img"
                                             alt={cartItem.name}
                                             style={{ width: '200px' }}
