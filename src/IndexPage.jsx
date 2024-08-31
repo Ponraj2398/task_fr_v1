@@ -168,13 +168,13 @@ const IndexComponent = () => {
             {/* Order dashboard */}
             <div className="dashboard-order">
                 <h3>Order-Menu</h3>
-                <div className="order-address">
+                {/* <div className="order-address">
                     <p>Delivery Address</p>
                     <h5>130 Kalavasal Byepass Road, Madurai-05</h5>
                 </div>
                 <div className="order-time">
                     <i className="bi bi-clock-fill"></i> 30 mins <i className="bi bi-geo-alt-fill"> 2 km</i>
-                </div>
+                </div> */}
                 <div className="order-wrapper">
                     {cart.map((cartItem) => (
                         <div key={cartItem._id} className="order-card">
