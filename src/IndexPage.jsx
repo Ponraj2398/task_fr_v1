@@ -16,6 +16,15 @@ const IndexComponent = () => {
         fetchProducts();
     }, []);
 
+    const GoToHome = () =>{
+        navigate('/indexpage')
+    }
+    const GoToSignup = () =>{
+        navigate('/signup')
+    }
+    const GoToLogin = () => {
+        navigate('/')
+    }
     const fetchProducts = async () => {
         try {
             const response = await axios.get('https://task-backend-v1-fkb7.onrender.com/api/product/list');
@@ -90,8 +99,8 @@ const IndexComponent = () => {
             </label>
             <div className="sidebar">
                 <div className="sidebar-menu">
-                    <a><i className="bi bi-search fs-6"></i>
-                        Search</a>
+                    <button onClick={GoToHome}><i className="bi bi-search fs-6"></i>
+                        Search</button>
                 </div>
                 {/* <div className="sidebar-content">
                     <div className="search-bar">
@@ -100,29 +109,36 @@ const IndexComponent = () => {
                     </div>
                 </div> */}
                 <div className="sidebar-menu">
-                    <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i>
-                        Home</a>
+                    {/* <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i>
+                        Home</a> */}
+                        <button onClick={GoToHome}><i className="bi bi-house-door-fill fs-6"></i>
+                        Home</button>
                 </div>
 
                 <div className="sidebar-menu">
-                    <a href="/signup"><i className="bi bi-person-circle fs-6"></i>
-                        Register</a>
+                    {/* <a href="/signup"><i className="bi bi-person-circle fs-6"></i>
+                        Register</a> */}
+                        <button onClick={GoToSignup}><i className="bi bi-person-circle fs-6"></i>
+                        Register</button>
                 </div>
                 <div className="sidebar-menu">
-                    <a href="/"><i className="bi bi-person-add fs-6"></i>
-                        Login</a>
+                    {/* <a href="/"><i className="bi bi-person-add fs-6"></i>
+                        Login</a> */}
+                        <button onClick={GoToLogin}><i className="bi bi-person-add fs-6"></i>
+                        Login</button>
                 </div>
                 <div className="sidebar-menu">
-                    <a href='/signup'><i className="bi bi-gear fs-6"></i>
-                        Settings</a>
+                    {/* <a href='/signup'><i className="bi bi-gear fs-6"></i>
+                        Settings</a> */}
+                        <button onClick={GoToSignup}><i className="bi bi-gear fs-6"></i>
+                        Settings</button>
                 </div>
 
                 <div className="sidebar-menu">
                     {/* <a href="#">Logout</a> */}
-                    <a href="/"> <i className="bi bi-box-arrow-right fs-6"></i>
-                        Logout</a>
+                    <button onClick={GoToLogin}><i className="bi bi-box-arrow-right fs-6"></i>
+                        Logout</button>
                 </div>
-
             </div>
             {/* Dashboard */}
             <div className="dashborad" style={{ backgroundColor: '#fecb40' }}>
@@ -134,12 +150,12 @@ const IndexComponent = () => {
                 </div>
                 <h3 className="dashboard-title">Recommended Food For You</h3>
                 <div className="dashboard-menu">
-                    <a>Favorites</a>
-                    <a>Best Seller</a>
-                    <a>Near Me</a>
-                    <a>Promotion</a>
-                    <a>Top Rated</a>
-                    <a>All</a>
+                    <a href='/'>Favorites</a>
+                    <a href='/'>Best Seller</a>
+                    <a href='/'>Near Me</a>
+                    <a href='/'>Promotion</a>
+                    <a href='/'>Top Rated</a>
+                    <a href='/'>All</a>
                 </div>
                 <div className="dashboard-content">
                     {
