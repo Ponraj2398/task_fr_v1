@@ -38,6 +38,7 @@ const SignUpForm = () => {
         name: "",
         password: "",
     });
+    console.log(registerData);
     const [showPassword, setShowPassword] = useState(false);
 
     // const handleTogglePasswordVisibility = () => {
@@ -156,7 +157,7 @@ const SignUpForm = () => {
                                 )}
                             </Formik>
                             <br />
-                            <p>Already have an account? <a onClick={handleToggle} style={{ textDecoration: 'none',cursor:'pointer' }}><strong style={{ color: 'rgb(75,132,87)' }}>Login</strong></a></p><br />
+                            <p>Already have an account? <button onClick={handleToggle} style={{ textDecoration: 'none',cursor:'pointer' }}><strong style={{ color: 'rgb(75,132,87)' }}>Login</strong></button></p><br />
                             <Button className='w-75' style={{ borderRadius: '25px', height: '50px', backgroundColor: '#fff', color: 'black', border: '1px solid grey' }}><img src={Googleimg} width='30' height='30' alt='not found' />&nbsp;&nbsp;<span style={{ fontSize: '18px' }}>Continue with Google</span></Button><br />
                             <Button className='w-75 mb-4' style={{ borderRadius: '25px', height: '50px', backgroundColor: '#fff', color: 'black', border: '1px solid grey' }}><img src={Appleimg} width='25' height='30' alt='not found' />&nbsp;&nbsp;<span style={{ fontSize: '18px', }}>Continue with Apple</span></Button>
                         </Col>
