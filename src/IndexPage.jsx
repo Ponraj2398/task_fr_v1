@@ -116,7 +116,7 @@ const IndexComponent = () => {
                         Login</a>
                 </div>
                 <div className="sidebar-menu">
-                    <a><i className="bi bi-gear fs-6"></i>
+                    <a href='/signup'><i className="bi bi-gear fs-6"></i>
                         Settings</a>
                 </div>
 
