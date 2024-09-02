@@ -16,15 +16,15 @@ const IndexComponent = () => {
         fetchProducts();
     }, []);
 
-    const GoToHome = () =>{
-        navigate('/indexpage')
-    }
-    const GoToSignup = () =>{
-        navigate('/signup')
-    }
-    const GoToLogin = () => {
-        navigate('/')
-    }
+    // const GoToHome = () =>{
+    //     navigate('/indexpage')
+    // }
+    // const GoToSignup = () =>{
+    //     navigate('/signup')
+    // }
+    // const GoToLogin = () => {
+    //     navigate('/')
+    // }
     const fetchProducts = async () => {
         try {
             const response = await axios.get('https://task-backend-v1-fkb7.onrender.com/api/product/list');
@@ -99,8 +99,10 @@ const IndexComponent = () => {
             </label>
             <div className="sidebar">
                 <div className="sidebar-menu">
-                    <button onClick={GoToHome}><i className="bi bi-search fs-6"></i>
-                        Search</button>
+                    <a href="/"><i className="bi bi-search fs-6"></i>
+                    Search</a>
+                    {/* <button onClick={GoToHome}><i className="bi bi-search fs-6"></i>
+                        Search</button> */}
                 </div>
                 {/* <div className="sidebar-content">
                     <div className="search-bar">
@@ -109,35 +111,35 @@ const IndexComponent = () => {
                     </div>
                 </div> */}
                 <div className="sidebar-menu">
-                    {/* <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i>
-                        Home</a> */}
-                        <button onClick={GoToHome}><i className="bi bi-house-door-fill fs-6"></i>
-                        Home</button>
+                    <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i>
+                        Home</a>
+                        {/* <button onClick={GoToHome}><i className="bi bi-house-door-fill fs-6"></i>
+                        Home</button> */}
                 </div>
 
                 <div className="sidebar-menu">
-                    {/* <a href="/signup"><i className="bi bi-person-circle fs-6"></i>
-                        Register</a> */}
-                        <button onClick={GoToSignup}><i className="bi bi-person-circle fs-6"></i>
-                        Register</button>
+                    <a href="/signup"><i className="bi bi-person-circle fs-6"></i>
+                        Register</a>
+                        {/* <button onClick={GoToSignup}><i className="bi bi-person-circle fs-6"></i>
+                        Register</button> */}
                 </div>
                 <div className="sidebar-menu">
-                    {/* <a href="/"><i className="bi bi-person-add fs-6"></i>
-                        Login</a> */}
-                        <button onClick={GoToLogin}><i className="bi bi-person-add fs-6"></i>
-                        Login</button>
+                    <a href="/"><i className="bi bi-person-add fs-6"></i>
+                        Login</a>
+                        {/* <button onClick={GoToLogin}><i className="bi bi-person-add fs-6"></i>
+                        Login</button> */}
                 </div>
                 <div className="sidebar-menu">
-                    {/* <a href='/signup'><i className="bi bi-gear fs-6"></i>
-                        Settings</a> */}
-                        <button onClick={GoToSignup}><i className="bi bi-gear fs-6"></i>
-                        Settings</button>
+                    <a href='/signup'><i className="bi bi-gear fs-6"></i>
+                        Settings</a>
+                        {/* <button onClick={GoToSignup}><i className="bi bi-gear fs-6"></i>
+                        Settings</button> */}
                 </div>
 
                 <div className="sidebar-menu">
-                    {/* <a href="#">Logout</a> */}
-                    <button onClick={GoToLogin}><i className="bi bi-box-arrow-right fs-6"></i>
-                        Logout</button>
+                    <a href="/"><i className="bi bi-box-arrow-right fs-6"></i>Logout</a>
+                    {/* <button onClick={GoToLogin}><i className="bi bi-box-arrow-right fs-6"></i>
+                        Logout</button> */}
                 </div>
             </div>
             {/* Dashboard */}
