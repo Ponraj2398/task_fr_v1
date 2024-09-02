@@ -25,7 +25,7 @@ function App() {
       <div className="App" id={load ? "no-scroll" : "scroll"}>
         <PreLoader load={load} />
         <Routes>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/indexpage" element={<Indexpage />}></Route>
           <Route path="/admin" element={<Admin />}></Route>

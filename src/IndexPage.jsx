@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css'; // Import your component-specific CSS file
 import img from '../src/images/pizzahutimg1.jpg'
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -112,7 +109,7 @@ const IndexComponent = () => {
                         Register</a>
                 </div>
                 <div className="sidebar-menu">
-                    <a href="/login"><i className="bi bi-person-add fs-6"></i>
+                    <a href="/"><i className="bi bi-person-add fs-6"></i>
                         Login</a>
                 </div>
                 <div className="sidebar-menu">
@@ -122,7 +119,7 @@ const IndexComponent = () => {
 
                 <div className="sidebar-menu">
                     {/* <a href="#">Logout</a> */}
-                    <a href="/login"> <i className="bi bi-box-arrow-right fs-6"></i>
+                    <a href="/"> <i className="bi bi-box-arrow-right fs-6"></i>
                         Logout</a>
                 </div>
 

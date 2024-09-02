@@ -4,14 +4,12 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import './Admin.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 // import Tab from 'react-bootstrap/Tab';
 // import Tabs from 'react-bootstrap/Tabs';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import Badge from 'react-bootstrap/Badge';
 
 function Admin() {
 
@@ -22,7 +20,7 @@ function Admin() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [activeTab, setActiveTab] = useState('add');
     const navigate = useNavigate();
-    const [additems, setItems] = useState([]);
+    // const [additems, setItems] = useState([]);
     const handleTabSelect = (tab) => {
         setActiveTab(tab);
     };
@@ -80,6 +78,7 @@ function Admin() {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
+                console.log(response);        
                 fetchProducts();
                 alert("Product Added");
                 setSelectedImage(null);
@@ -129,7 +128,7 @@ function Admin() {
             }
 
             const data = await response.json();
-            // console.log('Data Updated: ', data);
+            console.log('Data Updated: ', data);
             fetchProducts(); // Refresh the product list
             setSelectedImage(null);
             handleClose(); // Close the modal
