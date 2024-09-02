@@ -14,7 +14,7 @@ import * as yup from "yup";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const handleToggle = () => {
     // setIsLogin(!isLogin);
@@ -41,15 +41,15 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const registerData = location.state?.registerData;
-  React.useEffect(() => {
+  useEffect(() => {
     if (registerData) {
       console.log("Received registration data:", registerData);
       // Use the registration data as needed
     }
   }, [registerData]);
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  // const handleTogglePasswordVisibility = () => {
+  //   setShowPassword(!showPassword);
+  // };
   const handleChange = (event) => {
     const { name, value } = event.target
     setLoginData({ ...loginData, [name]: value })

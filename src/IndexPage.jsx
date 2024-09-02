@@ -112,7 +112,7 @@ const IndexComponent = () => {
                         Register</a>
                 </div>
                 <div className="sidebar-menu">
-                    <a href="/"><i className="bi bi-person-add fs-6"></i>
+                    <a href="/login"><i className="bi bi-person-add fs-6"></i>
                         Login</a>
                 </div>
                 <div className="sidebar-menu">
@@ -122,7 +122,7 @@ const IndexComponent = () => {
 
                 <div className="sidebar-menu">
                     {/* <a href="#">Logout</a> */}
-                    <a href="/"> <i className="bi bi-box-arrow-right fs-6"></i>
+                    <a href="/login"> <i className="bi bi-box-arrow-right fs-6"></i>
                         Logout</a>
                 </div>
 

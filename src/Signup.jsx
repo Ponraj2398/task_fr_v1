@@ -12,7 +12,7 @@ import * as formik from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 const SignUpForm = () => {
-    const [isLogin, setIsLogin] = useState(false);
+    // const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
     const handleToggle = () => {
         // setIsLogin(!isLogin);
@@ -40,9 +40,9 @@ const SignUpForm = () => {
     });
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleTogglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
+    // const handleTogglePasswordVisibility = () => {
+    //     setShowPassword(!showPassword);
+    // };
     const handleSubmit = async (val, { setSubmitting }) => {
         // event.preventDefault();
         console.log("SUBMITTING FORM:", val);
