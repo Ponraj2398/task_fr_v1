@@ -164,7 +164,7 @@ const IndexComponent = () => {
                         Array.isArray(additems) && additems.slice(0, 100).map((product) => (
                             // <div key={a.id}>
                             <div key={product._id} className="dashboard-menus" style={{ backgroundColor: 'black' }}>
-                                <img src={`http://localhost:8080/public/data/uploads/${product.image}`} alt="#" className="img-fluid dash-image" style={{ overflow: 'hidden', width: '400px', height: '150px' }} />
+                                <img src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`} alt="#" className="img-fluid dash-image" style={{ overflow: 'hidden', width: '400px', height: '150px' }} />
                                 <div className="details">
                                     <h5 style={{ fontSize: '15px' }}>{product.name}<span>Rs.{product.price}</span></h5>
                                     <p><strong className="box-pizza">BOX PIZZA</strong> {product.description}</p>
