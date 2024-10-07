@@ -355,8 +355,8 @@ function Admin() {
                                                                             <td className="edit-delete-table fw-bold">{index + 1}</td>
                                                                             <td className="d-flex justify-content-center">
                                                                                 <img
-                                                                                    // src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
-                                                                                    src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`}
+                                                                                    src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
+                                                                                    // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`}
                                                                                     alt="#"
                                                                                     style={{ width: '100px', height: 'auto' }}
                                                                                 />
