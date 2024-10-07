@@ -94,7 +94,7 @@ const IndexComponent = () => {
             <input type="checkbox" id="cart" />
             <label htmlFor="cart" className="label-cart">
                 <i className="bi bi-cart3" style={{ color: '#fecb40', fontSize: '25px' }}>
-                    {cartItemCount > 0 && <span className="cart-item-count fs-6" style={{ position: 'absolute', top: '0px', color: 'black' }}>{cartItemCount}</span>}
+                    {cartItemCount > 0 && <span className="cart-item-count fs-6" style={{ position: 'absolute', top: '0px', color: 'yellow' }}>{cartItemCount}</span>}
                 </i>
             </label>
             <div className="sidebar">
