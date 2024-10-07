@@ -78,13 +78,21 @@ function Admin() {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
-                console.log(response);        
-                fetchProducts();
+                // console.log(response);        
+                // fetchProducts();
+                // alert("Product Added");
+                // setSelectedImage(null);
+                // window.location.reload();
+                // Check if the response indicates success
+            if (response.status === 200) {
                 alert("Product Added");
+                fetchProducts();
                 setSelectedImage(null);
-                window.location.reload();
+                window.location.reload(); // Optionally, consider using fetchProducts() instead of reloading
+            }
             } catch (error) {
                 console.error('Error adding product:', error);
+                alert("Error adding product: " + error.message); // Display error message
             }
         }
         // } else {
@@ -207,7 +215,8 @@ function Admin() {
                                             editProduct.image && (
                                                 <div className="text-center mt-3">
                                                     <img
-                                                        src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${editProduct.image}`}
+                                                        // src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${editProduct.image}`}
+                                                        src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${editProduct.image}`}
                                                         alt="Selected"
                                                         style={{ maxWidth: '100%', height: 'auto' }}
                                                     />
@@ -346,7 +355,8 @@ function Admin() {
                                                                             <td className="edit-delete-table fw-bold">{index + 1}</td>
                                                                             <td className="d-flex justify-content-center">
                                                                                 <img
-                                                                                    src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
+                                                                                    // src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
+                                                                                    src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`}
                                                                                     alt="#"
                                                                                     style={{ width: '100px', height: 'auto' }}
                                                                                 />
@@ -408,7 +418,10 @@ function Admin() {
                                                                         <tr key={product._id}>
                                                                             <td className="edit-delete-table fw-bold">{index + 1}</td>
                                                                             <td className="d-flex justify-content-center">
-                                                                                <img src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`} alt="Product" style={{ width: '100px', height: 'auto' }} />
+                                                                                <img 
+                                                                                // src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`} 
+                                                                                src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
+                                                                                alt="Product" style={{ width: '100px', height: 'auto' }} />
                                                                             </td>
                                                                             <td className="edit-delete-table">{product.name}</td>
                                                                             <td className="edit-delete-table">{product.description}</td>
