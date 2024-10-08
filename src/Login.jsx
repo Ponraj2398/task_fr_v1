@@ -194,7 +194,7 @@ const Login = () => {
                 </Form>
               )}
             </Formik><br />
-            <p>Create a New account?&nbsp;&nbsp;<button onClick={handleToggle} style={{ textDecoration: 'none', cursor: 'pointer' }}><strong style={{ color: 'rgb(75,132,87)' }}>Signup</strong></button></p>
+            <p>Create a New account?&nbsp;&nbsp;<button onClick={handleToggle} style={{ textDecoration: 'none', cursor: 'pointer',border:'none' }}><strong style={{ color: 'rgb(75,132,87)' }}>Signup</strong></button></p>
           </Col>
           {/* ) : ( */}
           {/* )} */}

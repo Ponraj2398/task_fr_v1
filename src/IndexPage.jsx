@@ -165,8 +165,8 @@ const IndexComponent = () => {
                             // <div key={a.id}>
                             <div key={product._id} className="dashboard-menus" style={{ backgroundColor: 'black' }}>
                                 <img 
-                                // src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`} 
-                                src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
+                                src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`} 
+                                // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
                                 alt="#" className="img-fluid dash-image" style={{ overflow: 'hidden', width: '400px', height: '150px' }} />
                                 <div className="details">
                                     <h5 style={{ fontSize: '15px' }}>{product.name}<span>Rs.{product.price}</span></h5>
@@ -197,8 +197,8 @@ const IndexComponent = () => {
                     {cart.map((cartItem) => (
                         <div key={cartItem._id} className="order-card">
                             <img 
-                            // src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${cartItem.image}`}
-                            src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${cartItem.image}`}
+                            src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${cartItem.image}`}
+                            // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${cartItem.image}`}
                             className="order-img" alt="#" />
                             <div className="order-details">
                                 <p>{cartItem.name}</p>
