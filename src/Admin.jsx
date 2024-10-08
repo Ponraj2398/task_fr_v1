@@ -88,7 +88,7 @@ function Admin() {
                 fetchProducts();
                 alert("Product Added");
                 setSelectedImage(null);
-                // window.location.reload();
+                window.location.reload();
                 // Check if the response indicates success
             // if (response.status === 200) {
             //     alert("Product Added");
