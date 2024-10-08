@@ -98,7 +98,7 @@ function Admin() {
             // }
             } catch (error) {
                 console.error('Error adding product:', error);
-                alert("Error adding product: " + error.message); // Display error message
+                // alert("Error adding product: " + error.message); // Display error message
             }
         }
         // } else {
