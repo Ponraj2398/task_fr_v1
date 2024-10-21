@@ -96,7 +96,7 @@ const IndexComponent = () => {
     return (
         <div>
             <div className="logo">
-                <div><h2><strong className="box-pizza">Box Pizza</strong></h2></div>
+                <div><h2><strong className="box-pizza">Box Pizza</strong></h2></div><FaArrowCircleRight className='fs-6'/>
             </div>
 
             <input type="checkbox" id="cart" />
@@ -107,10 +107,10 @@ const IndexComponent = () => {
             </label>
             <div className="toggle-icon" onClick={toggleSidebar}>
                 {isSidebarVisible ? (
-                    <FaArrowCircleRight />
+                    <FaArrowCircleRight className='fs-6'/>
                     // Right arrow icon
                 ) : (
-                    <FaArrowCircleLeft /> // Left arrow icon (to show the sidebar again)
+                    <FaArrowCircleLeft className='fs-6' /> // Left arrow icon (to show the sidebar again)
                 )}
             </div>
 
