@@ -363,12 +363,12 @@ p {
 
 .toggle-icon {
   position: fixed;
-  top: 20px;
-  left: 20px; 
+  top: 15px;
+  left: 25px; 
   z-index: 2;
   cursor: pointer;
   color: #fecb40;
-  font-size: 25px; 
+  font-size: 35px; 
 }
 
 .dashborad {
