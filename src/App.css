@@ -375,7 +375,7 @@ p {
   height: 100%;
   width: 100%;
   padding-right: 360px;
-  padding-left: 60px;
+  /* padding-left: 60px; */
 }
 
 .dashborad-items {
