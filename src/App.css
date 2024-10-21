@@ -280,7 +280,12 @@ p {
   line-height: 1.5;
   color: #fecb40;
 }
-
+.sidebar-menu>button{
+  text-decoration: none;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: #fecb40;
+}
 .sidebar-menu:hover {
   border-right: 2px solid #fecb40;
   color: red;
