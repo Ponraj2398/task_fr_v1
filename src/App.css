@@ -292,18 +292,16 @@ p {
   color: red;
 }
  */
- /* Cart Icon */
-.label-cart {
+/* .label-cart {
   position: fixed;
   top: 15px;
   right: 10px;
   z-index: 10;
   cursor: pointer;
   color: #2d2f31;
-  display: inline-block; /* Ensure proper alignment */
+  display: inline-block; 
 }
 
-/* Logo Section */
 .logo {
   display: flex;
   align-items: center;
@@ -327,12 +325,11 @@ p {
   font-size: 15px;
 }
 
-/* Sidebar Section */
 .sidebar {
   position: fixed;
   top: 40px;
   left: 0;
-  width: 200px; /* Adjusted for better visibility */
+  width: 200px; 
   height: 100%;
   background-color: #000;
   z-index: 1;
@@ -364,15 +361,14 @@ p {
   color: red;
 }
 
-/* Toggle Icon */
 .toggle-icon {
   position: fixed;
   top: 50px;
-  left: 200px; /* Aligns with the sidebar */
+  left: 200px; 
   z-index: 2;
   cursor: pointer;
   color: #fecb40;
-  font-size: 25px; /* Ensure the icon is clearly visible */
+  font-size: 25px; 
 }
 
 .dashborad {
@@ -408,7 +404,6 @@ p {
 }
 
 .dashboard-text h1>span {
-  /* The child selector (>) selects all elements that are the children of a specified element. */
   color: #fecb40;
 }
 
@@ -454,7 +449,6 @@ p {
   padding-top: 10px;
 }
 
-/* -------------------------------------------------- dashboard-order styles --------------------------------------------- */
 .dashboard-order {
   width: 340px;
   min-height: 100%;
@@ -574,8 +568,6 @@ p {
   display: none;
 }
 
-/* The general sibling selector (~) selects all elements that are next siblings of a specified element. */
-/* This is used to target an element with the class "label-cart" that is a sibling of an element with the ID "cart" when the "cart" element is checked. */
 
 #cart:checked~.label-cart {
   color: #fecb40;
@@ -616,12 +608,10 @@ p {
     display: flex;
     align-items: center;
     position: fixed;
-    /* background-color: #2d2f31; */
     background-color: #000;
     width: 100%;
     text-align: center;
     padding: 15px 100px 15px 60px;
-    /* padding: 20px; */
     top: 0;
     left: 0;
     z-index: 2;
@@ -639,10 +629,88 @@ p {
 
 
 .logo .box-pizza {
-  /* background: linear-gradient(to left, blue, gray, orange, violet, red);
-  background-clip: text;
-  -webkit-background-clip: text; */
+  
   color: #fecb40;
+} */
+/* Sidebar Section */
+.sidebar {
+  position: fixed;
+  top: 60px; /* Move the sidebar below the logo */
+  left: -200px; /* Hidden by default */
+  width: 200px;
+  height: 100%;
+  background-color: #000;
+  z-index: 1;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.visible {
+  transform: translateX(200px); /* Slide in when visible */
+}
+
+.toggle-icon {
+  position: fixed;
+  top: 60px; /* Align with the sidebar */
+  left: 10px;
+  z-index: 2;
+  cursor: pointer;
+  color: #fecb40;
+  font-size: 25px;
+}
+
+/* Dashboard Content */
+.dashborad {
+  padding: 0 60px;
+  transition: padding-right 0.3s ease;
+}
+
+#cart:checked ~ .dashborad {
+  padding-right: 360px; /* Adjust dashboard padding when cart is visible */
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 680px) {
+  .dashborad {
+    padding-right: 5px;
+  }
+
+  .dashboard-order {
+    width: 100%;
+    right: 0;
+  }
+
+  .toggle-icon {
+    left: 10px; /* Adjust for mobile */
+  }
+
+  .sidebar {
+    left: -200px; /* Keep hidden by default */
+  }
+
+  .sidebar.visible {
+    transform: translateX(200px); /* Slide in */
+  }
+}
+
+/* Smaller Screen Adjustments */
+@media screen and (max-width: 450px) {
+  .logo {
+    padding: 15px 10px;
+    justify-content: center;
+  }
+
+  .logo h2 {
+    margin-right: 0;
+  }
+
+  .sidebar {
+    width: 180px;
+  }
+
+  .toggle-icon {
+    left: 5px;
+    font-size: 20px;
+  }
 }
 
 
