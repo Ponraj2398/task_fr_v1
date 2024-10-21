@@ -9,6 +9,8 @@ import Admin from './Admin'
 import Checkout from './CheckOut'
 import Payment from './Payment'
 import PreLoader from './PreLoader'
+import PrivateRoute from './PrivateRoute';  // Import the PrivateRoute component
+
 import './index.css'
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -27,10 +29,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/indexpage" element={<Indexpage />}></Route>
+          {/* Protect these routes with PrivateRoute */}
+          <Route path="/indexpage" element={<PrivateRoute element={<Indexpage />} />} />
+          <Route path="/admin" element={<PrivateRoute element={<Admin />} />} />
+          <Route path="/checkout" element={<PrivateRoute element={<Checkout />} />} />
+          <Route path="/payment" element={<PrivateRoute element={<Payment />} />} />
+          {/* <Route path="/indexpage" element={<Indexpage />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
-          <Route path="/payment" element={<Payment />}></Route>
+          <Route path="/payment" element={<Payment />}></Route> */}
         </Routes>
       </div>
     </BrowserRouter>

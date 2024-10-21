@@ -65,7 +65,7 @@ const Login = () => {
       console.log('Admin signed in successfully!');
       navigate('/admin');
     }
-    else{
+    else {
       try {
         const response = await fetch("https://task-backend-v1-fkb7.onrender.com/login", {
           method: "POST",
@@ -74,9 +74,9 @@ const Login = () => {
           },
           body: JSON.stringify(val),
         });
-  
+
         const responseData = await response.json();
-  
+
         // if (response.ok) {
         //   console.log("Fetched data:", responseData);
         //   setLoginData(responseData);
@@ -100,6 +100,8 @@ const Login = () => {
           setLoginData(responseData);
           if (responseData.token) {
             localStorage.setItem("token", responseData.token);
+            // During login success, set a token or flag in localStorage
+            localStorage.setItem('isAuthenticated', 'true'); // Set this after successful login
             navigate("/indexpage");
           } else {
             alert("Login Failed....Please try again");
@@ -127,7 +129,7 @@ const Login = () => {
         setSubmitting(false);
       }
     }
-    
+
   };
   return (
     <div>
@@ -194,7 +196,7 @@ const Login = () => {
                 </Form>
               )}
             </Formik><br />
-            <p>Create a New account?&nbsp;&nbsp;<button onClick={handleToggle} style={{ textDecoration: 'none', cursor: 'pointer',border:'none' }}><strong style={{ color: 'rgb(75,132,87)' }}>Signup</strong></button></p>
+            <p>Create a New account?&nbsp;&nbsp;<button onClick={handleToggle} style={{ textDecoration: 'none', cursor: 'pointer', border: 'none' }}><strong style={{ color: 'rgb(75,132,87)' }}>Signup</strong></button></p>
           </Col>
           {/* ) : ( */}
           {/* )} */}

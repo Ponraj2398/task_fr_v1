@@ -85,6 +85,11 @@ const IndexComponent = () => {
     const goToCheckoutPage = () => {
         navigate('/checkout', { state: { cart, subtotal, gst, deliveryCharges, overallTotal } });
     };
+    const Logout = () =>{
+         // On logout, remove the token or flag
+         localStorage.removeItem('isAuthenticated');
+         navigate('/')
+    }
     return (
         <div>
             <div className="logo">
@@ -137,7 +142,8 @@ const IndexComponent = () => {
                 </div>
 
                 <div className="sidebar-menu">
-                    <a href="/"><i className="bi bi-box-arrow-right fs-6"></i>Logout</a>
+                    {/* <a href="/" ><i className="bi bi-box-arrow-right fs-6"></i>Logout</a> */}
+                    <span href="/" onClick={{Logout}}><i className="bi bi-box-arrow-right fs-6"></i>Logout</span>
                     {/* <button onClick={GoToLogin}><i className="bi bi-box-arrow-right fs-6"></i>
                         Logout</button> */}
                 </div>
