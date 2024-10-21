@@ -143,7 +143,7 @@ const IndexComponent = () => {
 
                 <div className="sidebar-menu">
                     {/* <a href="/" ><i className="bi bi-box-arrow-right fs-6"></i>Logout</a> */}
-                    <span href="/" onClick={{Logout}}><i className="bi bi-box-arrow-right fs-6"></i>Logout</span>
+                    <a href="/" onClick={{Logout}}><i className="bi bi-box-arrow-right fs-6"></i>Logout</a>
                     {/* <button onClick={GoToLogin}><i className="bi bi-box-arrow-right fs-6"></i>
                         Logout</button> */}
                 </div>
