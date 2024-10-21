@@ -215,7 +215,7 @@ p {
 }
 
 /* -------------------------------------------------  dashborad styles -------------------------------------------------------------- */
-.label-cart {
+/* .label-cart {
   position: fixed;
   top: 15px;
   right: 10px;
@@ -228,12 +228,9 @@ p {
   display: flex;
   align-items: center;
   position: fixed;
-  /* background-color: #2d2f31; */
   background-color: #000;
   width: 100%;
-  /* text-align: start; */
   padding: 9px 20px 9px 60px;
-  /* padding: 20px; */
   top: 0;
   left: 0;
   z-index: 2;
@@ -248,28 +245,24 @@ p {
 .logo .profile-btn{
   font-weight: 900;
   font-family: "Noto Sans JP", sans-serif;
-  /* color: #fecb40; */
-  /* padding: 5px; */
   font-size: 15px;
-  /* height: 35px; */
-  /* width: 50px; */
 }
 .sidebar {
   position: fixed;
   top: 40px;
   left: 0;
-  width: 200px; /* Adjusted for better visibility */
+  width: 200px; 
   height: 100%;
   background-color: #000;
   z-index: 1;
   padding-top: 70px;
-  transition: transform 0.3s ease-in-out; /* Smooth transition */
+  transition: transform 0.3s ease-in-out; 
 }
 
 .toggle-icon {
   position: fixed;
   top: 50px;
-  left: 200px; /* Position the toggle icon next to the sidebar */
+  left: 200px; 
   z-index: 2;
   cursor: pointer;
   color: #fecb40;
@@ -297,6 +290,89 @@ p {
 
 .sidebar-menu:hover>a {
   color: red;
+}
+ */
+ /* Cart Icon */
+.label-cart {
+  position: fixed;
+  top: 15px;
+  right: 10px;
+  z-index: 10;
+  cursor: pointer;
+  color: #2d2f31;
+  display: inline-block; /* Ensure proper alignment */
+}
+
+/* Logo Section */
+.logo {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  background-color: #000;
+  width: 100%;
+  padding: 9px 20px 9px 60px;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.logo h2 {
+  text-align: center;
+  margin-right: 10px;
+}
+
+.logo .profile-btn {
+  font-weight: 900;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 15px;
+}
+
+/* Sidebar Section */
+.sidebar {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 200px; /* Adjusted for better visibility */
+  height: 100%;
+  background-color: #000;
+  z-index: 1;
+  padding-top: 70px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-menu {
+  width: 100%;
+  text-align: center;
+  padding: 10px 5px;
+  color: #fecb40;
+}
+
+.sidebar-menu>a {
+  text-decoration: none;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: #fecb40;
+}
+
+.sidebar-menu:hover {
+  border-right: 2px solid #fecb40;
+  color: red;
+  cursor: pointer;
+}
+
+.sidebar-menu:hover>a {
+  color: red;
+}
+
+/* Toggle Icon */
+.toggle-icon {
+  position: fixed;
+  top: 50px;
+  left: 200px; /* Aligns with the sidebar */
+  z-index: 2;
+  cursor: pointer;
+  color: #fecb40;
+  font-size: 25px; /* Ensure the icon is clearly visible */
 }
 
 .dashborad {
