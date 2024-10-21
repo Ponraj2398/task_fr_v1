@@ -62,6 +62,11 @@ const Login = () => {
     if (val.phone === '9629743994' && val.password === 'Admin@123') {
       // Perform authentication logic (e.g., set a token in localStorage)
       console.log('Admin signed in successfully!');
+      Swal.fire({
+        title: "Welcome Admin!",
+        text: "Admin Logged Successfull!",
+        icon: "success"
+      });
       navigate('/admin');
     }
     else {

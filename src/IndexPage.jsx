@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { FaArrowCircleRight,FaArrowCircleLeft } from "react-icons/fa";
 
 const IndexComponent = () => {
 
@@ -16,16 +17,12 @@ const IndexComponent = () => {
     useEffect(() => {
         fetchProducts();
     }, []);
+    const [isSidebarVisible, setSidebarVisible] = useState(true); // Sidebar visibility state
 
-    // const GoToHome = () =>{
-    //     navigate('/indexpage')
-    // }
-    // const GoToSignup = () =>{
-    //     navigate('/signup')
-    // }
-    // const GoToLogin = () => {
-    //     navigate('/')
-    // }
+    const toggleSidebar = () => {
+      setSidebarVisible(!isSidebarVisible); // Toggle sidebar visibility
+    };
+   
     const fetchProducts = async () => {
         try {
             const response = await axios.get('https://task-backend-v1-fkb7.onrender.com/api/product/list');
@@ -108,52 +105,73 @@ const IndexComponent = () => {
                     {cartItemCount > 0 && <span className="cart-item-count fs-6" style={{ position: 'absolute', top: '0px', color: 'yellow' }}>{cartItemCount}</span>}
                 </i>
             </label>
-            <div className="sidebar">
+            <div className="toggle-icon" onClick={toggleSidebar}>
+        {isSidebarVisible ? (
+          <FaArrowCircleRight />
+          // Right arrow icon
+        ) : (
+            <FaArrowCircleLeft /> // Left arrow icon (to show the sidebar again)
+        )}
+      </div>
+
+      {isSidebarVisible && ( // Sidebar will render conditionally based on state
+        <div className="sidebar">
+          <div className="sidebar-menu">
+            <a href="/"><i className="bi bi-search fs-6"></i> Search</a>
+          </div>
+          <div className="sidebar-menu">
+            <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i> Home</a>
+          </div>
+          <div className="sidebar-menu">
+            <a href="/signup"><i className="bi bi-person-circle fs-6"></i> Register</a>
+          </div>
+          <div className="sidebar-menu">
+            <a href="/"><i className="bi bi-person-add fs-6"></i> Login</a>
+          </div>
+          <div className="sidebar-menu">
+            <a href='/signup'><i className="bi bi-gear fs-6"></i> Settings</a>
+          </div>
+          <div className="sidebar-menu">
+            <a onClick={{Logout}} href="/" style={{border:'none',background:'none'}}>
+              <i className="bi bi-box-arrow-right fs-6"></i> Logout
+            </a>
+          </div>
+        </div>
+      )}
+            {/* <div className="sidebar">
                 <div className="sidebar-menu">
                     <a href="/"><i className="bi bi-search fs-6"></i>
                     Search</a>
-                    {/* <button onClick={GoToHome}><i className="bi bi-search fs-6"></i>
-                        Search</button> */}
+                    
                 </div>
-                {/* <div className="sidebar-content">
-                    <div className="search-bar">
-                        <input type="text" placeholder="Search..." />
-                        <i className="bi bi-search icon"></i>
-                    </div>
-                </div> */}
+                
                 <div className="sidebar-menu">
                     <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i>
                         Home</a>
-                        {/* <button onClick={GoToHome}><i className="bi bi-house-door-fill fs-6"></i>
-                        Home</button> */}
+                       
                 </div>
 
                 <div className="sidebar-menu">
                     <a href="/signup"><i className="bi bi-person-circle fs-6"></i>
                         Register</a>
-                        {/* <button onClick={GoToSignup}><i className="bi bi-person-circle fs-6"></i>
-                        Register</button> */}
+                        
                 </div>
                 <div className="sidebar-menu">
                     <a href="/"><i className="bi bi-person-add fs-6"></i>
                         Login</a>
-                        {/* <button onClick={GoToLogin}><i className="bi bi-person-add fs-6"></i>
-                        Login</button> */}
+                        
                 </div>
                 <div className="sidebar-menu">
                     <a href='/signup'><i className="bi bi-gear fs-6"></i>
                         Settings</a>
-                        {/* <button onClick={GoToSignup}><i className="bi bi-gear fs-6"></i>
-                        Settings</button> */}
+                       
                 </div>
 
                 <div className="sidebar-menu">
-                    {/* <a href="/" ><i className="bi bi-box-arrow-right fs-6"></i>Logout</a> */}
                     <a onClick={{Logout}} href="/" style={{border:'none',background:'none'}}><i className="bi bi-box-arrow-right fs-6"></i>Logout</a>
-                    {/* <button onClick={GoToLogin}><i className="bi bi-box-arrow-right fs-6"></i>
-                        Logout</button> */}
+                    
                 </div>
-            </div>
+            </div> */}
             {/* Dashboard */}
             <div className="dashborad" style={{ backgroundColor: '#fecb40' }}>
                 <div className="dashborad-items">
