@@ -11,11 +11,14 @@ import { BiShow, BiHide } from "react-icons/bi";
 import * as formik from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+
 const SignUpForm = () => {
     // const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
     const handleToggle = () => {
         // setIsLogin(!isLogin);
+        
         navigate('/');
     };
     const { Formik } = formik;
@@ -59,10 +62,18 @@ const SignUpForm = () => {
             if (responseData) {
                 console.log("the Fectched data is", responseData);
                 setRegisterData(responseData);
-                alert('SignUp Successfull....')
+                Swal.fire({
+                    title: "Good job!",
+                    text: "You are LoggedIn Successfully!",
+                    icon: "success"
+                  });
                 navigate("/",{ state: { registerData: responseData } });
             } else {
-                alert("Phone no is already exists");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Phone no is already exists!",
+                  });
             }
         } catch (e) {
             console.log("error", e);
