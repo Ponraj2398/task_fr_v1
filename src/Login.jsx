@@ -12,7 +12,7 @@ import { BiShow, BiHide } from "react-icons/bi";
 import * as formik from "formik";
 import * as yup from "yup";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import Swal from 'sweetalert2';
 const Login = () => {
   // const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
@@ -45,7 +45,6 @@ const Login = () => {
   useEffect(() => {
     if (registerData) {
       console.log("Received registration data:", registerData);
-      // Use the registration data as needed
     }
   }, [registerData]);
   // const handleTogglePasswordVisibility = () => {
@@ -74,27 +73,7 @@ const Login = () => {
           },
           body: JSON.stringify(val),
         });
-
         const responseData = await response.json();
-
-        // if (response.ok) {
-        //   console.log("Fetched data:", responseData);
-        //   setLoginData(responseData);
-        //   if (responseData.token) {
-        //     localStorage.setItem("token", responseData.token);
-        //     window.location.href = "/indexpage";
-        //   } else {
-        //     alert("Token not found in response");
-        //   }
-        //   if (responseData.result && responseData.result.phone === val.phone && responseData.result.password === val.password) {
-        //     alert("Login Successful...");
-        //     navigate("/indexpage");
-        //   } else {
-        //     alert("Invalid Credentials");
-        //   }
-        // } else {
-        //   alert(responseData.message || "Login failed");
-        // }
         if (responseData) {
           console.log("Response data:", responseData);
           setLoginData(responseData);
@@ -102,22 +81,16 @@ const Login = () => {
             localStorage.setItem("token", responseData.token);
             // During login success, set a token or flag in localStorage
             localStorage.setItem('isAuthenticated', 'true'); // Set this after successful login
+            Swal.fire({
+              title: "Good job!",
+              text: "You clicked the button!",
+              icon: "success"
+            });
             navigate("/indexpage");
           } else {
             alert("Login Failed....Please try again");
           }
-          // if (responseData.apiStatus === true) {
-          //   console.log("API call successful:", responseData.message);
-          //   if (responseData.token) {
-          //     localStorage.setItem("token", responseData.token);
-          //     navigate("/indexpage");
-          //   } else {
-          //     alert("Token not found in response");
-          //   }
-          // } else {
-          //   console.error("API call failed:", responseData.message);
-          //   alert(responseData.message || "API status is false");
-          // }
+          
         } else {
           console.error("HTTP error:", responseData.message);
           alert(responseData.message || "Request failed");
