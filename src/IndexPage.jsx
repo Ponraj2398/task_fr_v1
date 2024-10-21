@@ -89,12 +89,12 @@ const IndexComponent = () => {
     const Logout = () =>{
          // On logout, remove the token or flag
          localStorage.removeItem('isAuthenticated');
-         navigate('/')
          Swal.fire({
             title: "Good job!",
             text: "You are LoggedOut Successfully!",
             icon: "success"
           });
+         navigate('/')   
     }
     return (
         <div>

@@ -63,8 +63,8 @@ const SignUpForm = () => {
                 console.log("the Fectched data is", responseData);
                 setRegisterData(responseData);
                 Swal.fire({
-                    title: "Good job!",
-                    text: "You are LoggedIn Successfully!",
+                    title: "Great!",
+                    text: "You are SignUp Successfully!",
                     icon: "success"
                   });
                 navigate("/",{ state: { registerData: responseData } });
