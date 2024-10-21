@@ -363,7 +363,7 @@ p {
 
 .toggle-icon {
   position: fixed;
-  top: 5px;
+  top: 3px;
   left: 25px; 
   z-index: 2;
   cursor: pointer;
