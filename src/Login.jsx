@@ -83,12 +83,16 @@ const Login = () => {
             localStorage.setItem('isAuthenticated', 'true'); // Set this after successful login
             Swal.fire({
               title: "Good job!",
-              text: "You clicked the button!",
+              text: "You are LoggedIn Successfully!",
               icon: "success"
             });
             navigate("/indexpage");
           } else {
-            alert("Login Failed....Please try again");
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Login Failed!",
+            });
           }
           
         } else {
