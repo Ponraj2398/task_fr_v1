@@ -258,12 +258,21 @@ p {
   position: fixed;
   top: 40px;
   left: 0;
-  width: 50px;
+  width: 200px; /* Adjusted for better visibility */
   height: 100%;
-  background-color: #f6f8fa;
   background-color: #000;
   z-index: 1;
   padding-top: 70px;
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.toggle-icon {
+  position: fixed;
+  top: 50px;
+  left: 200px; /* Position the toggle icon next to the sidebar */
+  z-index: 2;
+  cursor: pointer;
+  color: #fecb40;
 }
 
 .sidebar-menu {
@@ -274,18 +283,12 @@ p {
 }
 
 .sidebar-menu>a {
-  /* The child selector (>) selects all elements that are the children of a specified element. */
   text-decoration: none;
   font-size: 0.7rem;
   line-height: 1.5;
   color: #fecb40;
 }
-.sidebar-menu>button{
-  text-decoration: none;
-  font-size: 0.7rem;
-  line-height: 1.5;
-  color: #fecb40;
-}
+
 .sidebar-menu:hover {
   border-right: 2px solid #fecb40;
   color: red;
@@ -293,7 +296,6 @@ p {
 }
 
 .sidebar-menu:hover>a {
-  /* The child selector (>) selects all elements that are the children of a specified element. */
   color: red;
 }
 

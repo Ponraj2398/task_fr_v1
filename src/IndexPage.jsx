@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { FaArrowCircleRight,FaArrowCircleLeft } from "react-icons/fa";
+import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
 
 const IndexComponent = () => {
 
@@ -20,9 +20,9 @@ const IndexComponent = () => {
     const [isSidebarVisible, setSidebarVisible] = useState(true); // Sidebar visibility state
 
     const toggleSidebar = () => {
-      setSidebarVisible(!isSidebarVisible); // Toggle sidebar visibility
+        setSidebarVisible(!isSidebarVisible); // Toggle sidebar visibility
     };
-   
+
     const fetchProducts = async () => {
         try {
             const response = await axios.get('https://task-backend-v1-fkb7.onrender.com/api/product/list');
@@ -39,7 +39,7 @@ const IndexComponent = () => {
                 return [...prevFavorites, product];
             }
         });
-        console.log("Favorite Item Added..",product);
+        console.log("Favorite Item Added..", product);
     };
     const addToCart = (product) => {
         setCart(prevCart => {
@@ -83,15 +83,15 @@ const IndexComponent = () => {
     const goToCheckoutPage = () => {
         navigate('/checkout', { state: { cart, subtotal, gst, deliveryCharges, overallTotal } });
     };
-    const Logout = () =>{
-         // On logout, remove the token or flag
-         localStorage.removeItem('isAuthenticated');
-         Swal.fire({
+    const Logout = () => {
+        // On logout, remove the token or flag
+        localStorage.removeItem('isAuthenticated');
+        Swal.fire({
             title: "Good job!",
             text: "You are LoggedOut Successfully!",
             icon: "success"
-          });
-         navigate('/')   
+        });
+        navigate('/')
     }
     return (
         <div>
@@ -106,38 +106,38 @@ const IndexComponent = () => {
                 </i>
             </label>
             <div className="toggle-icon" onClick={toggleSidebar}>
-        {isSidebarVisible ? (
-          <FaArrowCircleRight />
-          // Right arrow icon
-        ) : (
-            <FaArrowCircleLeft /> // Left arrow icon (to show the sidebar again)
-        )}
-      </div>
+                {isSidebarVisible ? (
+                    <FaArrowCircleRight />
+                    // Right arrow icon
+                ) : (
+                    <FaArrowCircleLeft /> // Left arrow icon (to show the sidebar again)
+                )}
+            </div>
 
-      {isSidebarVisible && ( // Sidebar will render conditionally based on state
-        <div className="sidebar">
-          <div className="sidebar-menu">
-            <a href="/"><i className="bi bi-search fs-6"></i> Search</a>
-          </div>
-          <div className="sidebar-menu">
-            <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i> Home</a>
-          </div>
-          <div className="sidebar-menu">
-            <a href="/signup"><i className="bi bi-person-circle fs-6"></i> Register</a>
-          </div>
-          <div className="sidebar-menu">
-            <a href="/"><i className="bi bi-person-add fs-6"></i> Login</a>
-          </div>
-          <div className="sidebar-menu">
-            <a href='/signup'><i className="bi bi-gear fs-6"></i> Settings</a>
-          </div>
-          <div className="sidebar-menu">
-            <a onClick={{Logout}} href="/" style={{border:'none',background:'none'}}>
-              <i className="bi bi-box-arrow-right fs-6"></i> Logout
-            </a>
-          </div>
-        </div>
-      )}
+            {isSidebarVisible && ( // Sidebar will render conditionally based on state
+                <div className="sidebar">
+                    <div className="sidebar-menu">
+                        <a href="/"><i className="bi bi-search fs-6"></i> Search</a>
+                    </div>
+                    <div className="sidebar-menu">
+                        <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i> Home</a>
+                    </div>
+                    <div className="sidebar-menu">
+                        <a href="/signup"><i className="bi bi-person-circle fs-6"></i> Register</a>
+                    </div>
+                    <div className="sidebar-menu">
+                        <a href="/"><i className="bi bi-person-add fs-6"></i> Login</a>
+                    </div>
+                    <div className="sidebar-menu">
+                        <a href='/signup'><i className="bi bi-gear fs-6"></i> Settings</a>
+                    </div>
+                    <div className="sidebar-menu">
+                        <a onClick={{ Logout }} href="/" style={{ border: 'none', background: 'none' }}>
+                            <i className="bi bi-box-arrow-right fs-6"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            )}
             {/* <div className="sidebar">
                 <div className="sidebar-menu">
                     <a href="/"><i className="bi bi-search fs-6"></i>
@@ -194,10 +194,10 @@ const IndexComponent = () => {
                         Array.isArray(additems) && additems.slice(0, 100).map((product) => (
                             // <div key={a.id}>
                             <div key={product._id} className="dashboard-menus" style={{ backgroundColor: 'black' }}>
-                                <img 
-                                src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`} 
-                                // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
-                                alt="#" className="img-fluid dash-image" style={{ overflow: 'hidden', width: '400px', height: '150px' }} />
+                                <img
+                                    src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
+                                    // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
+                                    alt="#" className="img-fluid dash-image" style={{ overflow: 'hidden', width: '400px', height: '150px' }} />
                                 <div className="details">
                                     <h5 style={{ fontSize: '15px' }}>{product.name}<span>Rs.{product.price}</span></h5>
                                     <p><strong className="box-pizza">BOX PIZZA</strong> {product.description}</p>
@@ -226,10 +226,10 @@ const IndexComponent = () => {
                 <div className="order-wrapper">
                     {cart.map((cartItem) => (
                         <div key={cartItem._id} className="order-card">
-                            <img 
-                            src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${cartItem.image}`}
-                            // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${cartItem.image}`}
-                            className="order-img" alt="#" />
+                            <img
+                                src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${cartItem.image}`}
+                                // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${cartItem.image}`}
+                                className="order-img" alt="#" />
                             <div className="order-details">
                                 <p>{cartItem.name}</p>
                                 <div>
