@@ -4,6 +4,7 @@ import img from '../src/images/pizzahutimg1.jpg'
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const IndexComponent = () => {
 
@@ -89,6 +90,11 @@ const IndexComponent = () => {
          // On logout, remove the token or flag
          localStorage.removeItem('isAuthenticated');
          navigate('/')
+         Swal.fire({
+            title: "Good job!",
+            text: "You are LoggedOut Successfully!",
+            icon: "success"
+          });
     }
     return (
         <div>
