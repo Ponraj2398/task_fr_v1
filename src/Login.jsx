@@ -87,7 +87,7 @@ const Login = () => {
             // During login success, set a token or flag in localStorage
             localStorage.setItem('isAuthenticated', 'true'); // Set this after successful login
             Swal.fire({
-              title: "Good job!",
+              title: "Great!",
               text: "You are LoggedIn Successfully!",
               icon: "success"
             });

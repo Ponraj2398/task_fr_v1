@@ -96,7 +96,7 @@ const IndexComponent = () => {
     return (
         <div>
             <div className="logo">
-                <div><h2><strong className="box-pizza">Box Pizza</strong></h2></div><FaArrowCircleRight className='fs-6'/>
+                <div><h2><strong className="box-pizza">Box Pizza</strong></h2></div>
             </div>
 
             <input type="checkbox" id="cart" />
