@@ -4,7 +4,7 @@ import img from '../src/images/pizzahutimg1.jpg'
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
 
 const IndexComponent = () => {
@@ -83,16 +83,15 @@ const IndexComponent = () => {
     const goToCheckoutPage = () => {
         navigate('/checkout', { state: { cart, subtotal, gst, deliveryCharges, overallTotal } });
     };
-    const Logout = () => {
-        // On logout, remove the token or flag
-        localStorage.removeItem('isAuthenticated');
-        Swal.fire({
-            title: "Good job!",
-            text: "You are LoggedOut Successfully!",
-            icon: "success"
-        });
-        navigate('/')
-    }
+    // const Logout = () => {
+    //     localStorage.removeItem('isAuthenticated');
+    //     Swal.fire({
+    //         title: "Good job!",
+    //         text: "You are LoggedOut Successfully!",
+    //         icon: "success"
+    //     });
+    //     navigate('/')
+    // }
     return (
         <div>
             <div className="logo">
@@ -132,7 +131,7 @@ const IndexComponent = () => {
                         <a href='/signup'><i className="bi bi-gear fs-6"></i> Settings</a>
                     </div>
                     <div className="sidebar-menu">
-                        <a onClick={{ Logout }} href="/" style={{ border: 'none', background: 'none' }}>
+                        <a href="/" style={{ border: 'none', background: 'none' }}>
                             <i className="bi bi-box-arrow-right fs-6"></i> Logout
                         </a>
                     </div>

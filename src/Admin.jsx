@@ -10,6 +10,7 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 // import Tabs from 'react-bootstrap/Tabs';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 function Admin() {
 
@@ -24,8 +25,13 @@ function Admin() {
     const handleTabSelect = (tab) => {
         setActiveTab(tab);
     };
-    
+
     const Redirect = () => {
+        Swal.fire({
+            title: "Great!",
+            text: "Admin LoggedOut Successfully!",
+            icon: "success"
+          });
         navigate('/');
     }
     const [data, setData] = useState({
@@ -57,7 +63,7 @@ function Admin() {
     //         setSelectedImage(file); // Set the selected image file
     //     }
     // };
-    
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setData({ ...data, [name]: value });
@@ -71,39 +77,46 @@ function Admin() {
             data.price.trim().length === 0 ||
             !selectedImage
         ) {
-            alert("Please fill all the fields");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please fill all the fields!",
+              });
         } else {
             try {
                 const formDataToSend = new FormData();
-                formDataToSend.append('file', selectedImage);
+                formDataToSend.append('image', selectedImage); // Ensure this matches your backend
                 formDataToSend.append('name', data.name);
                 formDataToSend.append('description', data.description);
                 formDataToSend.append('price', data.price);
+
                 const response = await axios.post('https://task-backend-v1-fkb7.onrender.com/api/product/insert', formDataToSend, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
-                console.log(response);        
-                fetchProducts();
-                alert("Product Added");
-                setSelectedImage(null);
-                window.location.reload();
-                // Check if the response indicates success
-            // if (response.status === 200) {
-            //     alert("Product Added");
-            //     fetchProducts();
-            //     setSelectedImage(null);
-            //     window.location.reload(); // Optionally, consider using fetchProducts() instead of reloading
-            // }
+
+                if (response.status === 200) {
+                    Swal.fire({
+                        title: "Great!",
+                        text: "Product Added Successfully!",
+                        icon: "success"
+                      });
+                    fetchProducts(); // Update product list
+                    setSelectedImage(null); // Reset the file input
+                }
             } catch (error) {
-                console.error('Error adding product:', error);
-                // alert("Error adding product: " + error.message); // Display error message
+                if (error.response) {
+                    console.error('Error response data:', error.response.data);
+                    console.error('Error response status:', error.response.status);
+                    console.error('Error response headers:', error.response.headers);
+                } else if (error.request) {
+                    console.error('Error request:', error.request);
+                } else {
+                    console.error('Error message:', error.message);
+                }
             }
         }
-        // } else {
-        //     console.error('Image upload failed. Product not added.');
-        // }
     };
     const [editProduct, setEditProduct] = useState({
         name: "",
@@ -138,11 +151,21 @@ function Admin() {
             if (!response.ok) {
                 const errorData = await response.json();
                 console.error('Error data:', errorData);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something Went wrong..!",
+                  });
                 throw new Error('Network response was not ok');
             }
 
             const data = await response.json();
             console.log('Data Updated: ', data);
+            Swal.fire({
+                title: "Great!",
+                text: "Product Updated Successfully!",
+                icon: "success"
+              });
             fetchProducts(); // Refresh the product list
             setSelectedImage(null);
             handleClose(); // Close the modal
@@ -156,9 +179,19 @@ function Admin() {
             if (response.status === 200) {
                 // Update the products state to remove the deleted product
                 setProducts(products.filter((product) => product._id !== id));
+                Swal.fire({
+                    title: "Great!",
+                    text: "Product Deleted Successfully!",
+                    icon: "success"
+                  });
                 // console.log('Product deleted: ', response.data);
             } else {
                 console.error('Error deleting product:', response.data);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something Went wrong..!",
+                  });
             }
         } catch (error) {
             console.error('Error during deletion: ', error);
@@ -424,10 +457,10 @@ function Admin() {
                                                                         <tr key={product._id}>
                                                                             <td className="edit-delete-table fw-bold">{index + 1}</td>
                                                                             <td className="d-flex justify-content-center">
-                                                                                <img 
-                                                                                src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`} 
-                                                                                // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
-                                                                                alt="Product" style={{ width: '100px', height: 'auto' }} />
+                                                                                <img
+                                                                                    src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
+                                                                                    // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
+                                                                                    alt="Product" style={{ width: '100px', height: 'auto' }} />
                                                                             </td>
                                                                             <td className="edit-delete-table">{product.name}</td>
                                                                             <td className="edit-delete-table">{product.description}</td>
