@@ -471,12 +471,14 @@ input {
 	/* position: absolute;
 	top:10px;
 	left:20px; */
-	width: 160px;
+	width: 100px;
 	color: #fff;
 	margin-left: 10px;
 	border-left: 5px solid #fecb40;
 }
-
+.smiley-icon{
+	color: #fecb40;
+}
 .nav-content2 .p {
 	font-family: 'Times New Roman', Times, serif;
 	position: relative;

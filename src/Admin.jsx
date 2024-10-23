@@ -218,7 +218,7 @@ function Admin() {
                         {/* <Button variant="primary" className="nav-content1 fs-5">
                             Hello, <strong>Admin</strong>
                         </Button> */}
-                        <span className="nav-content1 fs-5">Hello Admin &nbsp;<FaSmile /></span>
+                        <span className="nav-content1 fs-5 p-2">Hello Admin &nbsp;<FaSmile className="smiley-icon"/></span>
                         <Offcanvas show={show} onHide={handleClose} backdrop={false} scroll={true}>
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title>Edit Product</Offcanvas.Title>
@@ -279,7 +279,7 @@ function Admin() {
                     <div>
                         <Button variant="secondary" className="nav-content3" onClick={Redirect}>
                             <div className="back-btn fs-5">
-                                <i className="bi bi-box-arrow-in-left text-light fw-bold"></i>&nbsp;<span className="back">Back to Login</span>
+                                <i className="bi bi-box-arrow-in-left text-light fw-bold"></i><span className="back">Back to Login</span>
                             </div>
                         </Button>
                     </div>
