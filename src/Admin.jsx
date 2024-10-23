@@ -11,6 +11,7 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { FaSmile } from 'react-icons/fa';
 
 function Admin() {
 
@@ -214,9 +215,10 @@ function Admin() {
             <div id="admin" className="admin-main w-100">
                 <div className="nav-header d-flex flex-column flex-md-row align-items-center justify-content-between">
                     <div className="mb-3 mb-md-0">
-                        <Button variant="primary" className="nav-content1 fs-5" onClick={handleShow}>
+                        {/* <Button variant="primary" className="nav-content1 fs-5">
                             Hello, <strong>Admin</strong>
-                        </Button>
+                        </Button> */}
+                        <span className="nav-content1 fs-5">Hello Admin &nbsp;<FaSmile /></span>
                         <Offcanvas show={show} onHide={handleClose} backdrop={false} scroll={true}>
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title>Edit Product</Offcanvas.Title>
@@ -277,7 +279,7 @@ function Admin() {
                     <div>
                         <Button variant="secondary" className="nav-content3" onClick={Redirect}>
                             <div className="back-btn fs-5">
-                                <i className="bi bi-box-arrow-in-left text-light fw-bold"></i>&nbsp;<span className="back">Back to User</span>
+                                <i className="bi bi-box-arrow-in-left text-light fw-bold"></i>&nbsp;<span className="back">Back to Login</span>
                             </div>
                         </Button>
                     </div>
