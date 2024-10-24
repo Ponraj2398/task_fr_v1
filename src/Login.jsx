@@ -115,13 +115,13 @@ const Login = () => {
   };
   return (
     <div>
-      <Container fluid className="vh-100">
-        <Row className="vh-100">
+      <Container fluid>
+        <Row>
           <Col xs={{ span: 12, order: 2 }} md={{ span: 6, order: 1 }} className="p-0">
-            <div className="signup-col vh-100">
+            <div className="signup-col">
               <img
                 src={loginimg}
-                className="img-fluid vh-100 vw-100"
+                className="img-fluid h-100 w-100"
                 alt="Signup Background"
                 style={{ objectFit: 'cover' }}
               />

@@ -85,10 +85,10 @@ const SignUpForm = () => {
             <Container fluid className="vh-100">
                 <Row className="vh-100">
                     <Col xs={{ span: 12, order: 2 }} md={{ span: 6, order: 1 }} className="p-0">
-                        <div className="signup-col vh-100">
+                        <div className="signup-col">
                             <img
                                 src={loginimg}
-                                className="img-fluid vh-100 vw-100"
+                                className="img-fluid h-100 w-100"
                                 alt="Signup Background"
                                 style={{ objectFit: 'cover' }}
                             />
@@ -168,7 +168,7 @@ const SignUpForm = () => {
                                 )}
                             </Formik>
                             <br />
-                            <p>Already have an account? <button onClick={handleToggle} style={{ textDecoration: 'none',cursor:'pointer' }}><strong style={{ color: 'rgb(75,132,87)' }}>Login</strong></button></p><br />
+                            <p>Already have an account? <button onClick={handleToggle} style={{ textDecoration: 'none',cursor:'pointer',border: 'none' }}><strong style={{ color: 'rgb(75,132,87)' }}>Login</strong></button></p><br />
                             <Button className='w-75' style={{ borderRadius: '25px', height: '50px', backgroundColor: '#fff', color: 'black', border: '1px solid grey' }}><img src={Googleimg} width='30' height='30' alt='not found' />&nbsp;&nbsp;<span style={{ fontSize: '18px' }}>Continue with Google</span></Button><br />
                             <Button className='w-75 mb-4' style={{ borderRadius: '25px', height: '50px', backgroundColor: '#fff', color: 'black', border: '1px solid grey' }}><img src={Appleimg} width='25' height='30' alt='not found' />&nbsp;&nbsp;<span style={{ fontSize: '18px', }}>Continue with Apple</span></Button>
                         </Col>
