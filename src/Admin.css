@@ -407,7 +407,7 @@ input {
 	}
 
 	form {
-		background-color: #FFFFFF;
+		/* background-color: #FFFFFF; */
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -444,7 +444,7 @@ input {
 .admin-main {
 	overflow: hidden;
 	position: relative;
-	transition: all .25s ease-in;
+	transition: all 2s ease-in;
 }
 
 .nav-header {
@@ -481,17 +481,21 @@ input {
 }
 .nav-content2 .p {
 	font-family: 'Times New Roman', Times, serif;
-	position: relative;
-	top: 5px;
+	/* position: relative; */
+	/* top: 5px; */
 	/* left:20px; */
-	width: 160px;
-	display: grid;
-	justify-content: center;
+	/* width: 160px; */
+	/* display: grid; */
+	/* justify-content: center; */
 	text-transform: uppercase;
 	font-weight: bolder;
 	color: #CDA45E;
 }
-
+@media only screen and (max-width: 569px){
+	.nav-content2{
+		display: none;
+	}
+}
 .nav-content3 {
 	/* position: absolute;
 	top:10px;
@@ -547,7 +551,7 @@ input {
 
 	.back-btn {
 		position: relative;
-		left: 5px;
+		left: 3px;
 	}
 }
 
@@ -556,13 +560,13 @@ input {
 .a1 {
 	background-color: #435c70;
 	height:auto;
-	width: 1200px;
+	width: 100%;
 	box-shadow: 1px 1px 5px 0 #455c71;
-	padding: 10px;
+	/* padding: 10px; */
 }
 
 .a1-title {
-	display: inline-block;
+	/* display: inline-block; */
 	font-size: 1.1rem;
 	font-weight: 700;
 	color: #fff;
@@ -576,8 +580,11 @@ input {
 }
 @media screen and (max-width: 450px) {
 	.a1 {
-		width: 300px;
-		padding: 30px;
+		/* width: 300px; */
+		padding: 10px;
+	}
+	.a1-title{
+		text-align: center;
 	}
 }
 .form-group .form-control {
@@ -642,5 +649,62 @@ input {
 	font-size: 20px;
 }
 
+.product-img {
+    /* width: 80px; 
+    height: auto;
+    object-fit: cover; */
+	max-width: 80px; /* Adjust image size as needed */
+    height: auto;
+} 
+@media (max-width: 576px) {
+    .table-responsive-sm {
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+    }
+
+    /* Adjust the table cells to fit smaller screens */
+    .edit-delete-table th, .edit-delete-table td {
+        white-space: nowrap; /* Prevent text from wrapping */
+        font-size: 12px; /* Reduce font size for smaller screens */
+    }
+
+    /* Reduce button sizes for smaller screens */
+    .action-buttons button {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+/* @media (max-width: 576px) {
+    .product-img {
+        width: 40px; 
+    }
+    .edit-delete-table {
+        font-size: 12px; 
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .product-img {
+        width: 70px; 
+    }
+} */
+
+/* .action-buttons button {
+    padding: 6px 12px; 
+    font-size: 14px; 
+}
+
+@media (max-width: 576px) {
+    .action-buttons button {
+        padding: 4px 8px; 
+        font-size: 12px; 
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .action-buttons button {
+        padding: 5px 10px; 
+    }
+} */
 /* -------------------------------------------------- */
 

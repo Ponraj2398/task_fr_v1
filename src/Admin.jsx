@@ -32,7 +32,7 @@ function Admin() {
             title: "Great!",
             text: "Admin LoggedOut Successfully!",
             icon: "success"
-          });
+        });
         navigate('/');
     }
     const [data, setData] = useState({
@@ -82,7 +82,7 @@ function Admin() {
                 icon: "error",
                 title: "Oops...",
                 text: "Please fill all the fields!",
-              });
+            });
         } else {
             try {
                 const formDataToSend = new FormData();
@@ -102,7 +102,7 @@ function Admin() {
                         title: "Great!",
                         text: "Product Added Successfully!",
                         icon: "success"
-                      });
+                    });
                     fetchProducts(); // Update product list
                     setSelectedImage(null); // Reset the file input
                 }
@@ -156,7 +156,7 @@ function Admin() {
                     icon: "error",
                     title: "Oops...",
                     text: "Something Went wrong..!",
-                  });
+                });
                 throw new Error('Network response was not ok');
             }
 
@@ -166,7 +166,7 @@ function Admin() {
                 title: "Great!",
                 text: "Product Updated Successfully!",
                 icon: "success"
-              });
+            });
             fetchProducts(); // Refresh the product list
             setSelectedImage(null);
             handleClose(); // Close the modal
@@ -184,7 +184,7 @@ function Admin() {
                     title: "Great!",
                     text: "Product Deleted Successfully!",
                     icon: "success"
-                  });
+                });
                 // console.log('Product deleted: ', response.data);
             } else {
                 console.error('Error deleting product:', response.data);
@@ -192,7 +192,7 @@ function Admin() {
                     icon: "error",
                     title: "Oops...",
                     text: "Something Went wrong..!",
-                  });
+                });
             }
         } catch (error) {
             console.error('Error during deletion: ', error);
@@ -213,80 +213,80 @@ function Admin() {
     return (
         <div className="content d-flex flex-wrap">
             <div id="admin" className="admin-main w-100">
-                <div className="nav-header d-flex flex-column flex-md-row align-items-center justify-content-between">
-                    <div className="mb-3 mb-md-0">
+                <div className="nav-header d-flex flex-row align-items-center justify-content-between">
+                    <div className="">
                         {/* <Button variant="primary" className="nav-content1 fs-5">
                             Hello, <strong>Admin</strong>
                         </Button> */}
-                        <span className="nav-content1 fs-5 p-2">Hello Admin &nbsp;<FaSmile className="smiley-icon"/></span>
-                        <Offcanvas show={show} onHide={handleClose} backdrop={false} scroll={true}>
-                            <Offcanvas.Header closeButton>
-                                <Offcanvas.Title>Edit Product</Offcanvas.Title>
-                            </Offcanvas.Header>
-                            <Offcanvas.Body style={{ backgroundColor: "#435c70" }}>
-                                <Form>
-                                    <Form.Group className="mb-3" controlId="productName">
-                                        <Form.Label className="text-warning">Product Name</Form.Label>
-                                        <Form.Control type="text" name="name" value={editProduct.name || ''} onChange={(e) => setEditProduct({ ...editProduct, name: e.target.value })} placeholder="Enter product name" />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3" controlId="productDescription">
-                                        <Form.Label className="text-warning">Product Description</Form.Label>
-                                        <Form.Control as="textarea" name="description" value={editProduct.description || ''} onChange={(e) => setEditProduct({ ...editProduct, description: e.target.value })} rows={3} placeholder="Enter product description" />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3" controlId="productPrice">
-                                        <Form.Label className="text-warning">Product Price</Form.Label>
-                                        <Form.Control type="text" name="price" value={editProduct.price || ''} onChange={(e) => setEditProduct({ ...editProduct, price: e.target.value })} placeholder="Enter product price" />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3" controlId="productImage">
-                                        <Form.Label className="text-warning">Product Image</Form.Label>
-                                        <Form.Control type="file" name="image" onChange={handleFileChange} />
-                                        {selectedImage ? (
-                                            <div className="text-center mt-3">
-                                                <img
-                                                    src={URL.createObjectURL(selectedImage)}
-                                                    alt="Selected"
-                                                    style={{ maxWidth: '100%', height: 'auto' }}
-                                                />
-                                                <Button variant="danger" onClick={() => setSelectedImage(null)} className="mt-2">Remove</Button>
-                                            </div>
-                                        ) : (
-                                            editProduct.image && (
-                                                <div className="text-center mt-3">
-                                                    <img
-                                                        src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${editProduct.image}`}
-                                                        // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${editProduct.image}`}
-                                                        alt="Selected"
-                                                        style={{ maxWidth: '100%', height: 'auto' }}
-                                                    />
-                                                </div>
-                                            )
-                                        )}
-                                    </Form.Group>
-
-                                    <div className="text-center">
-                                        <Button variant="danger" onClick={handleUpdate}>Update Product</Button>
-                                    </div>
-                                </Form>
-                            </Offcanvas.Body>
-                        </Offcanvas>
+                        <span className="nav-content1 fs-5 p-2">Hello Admin &nbsp;<FaSmile className="smiley-icon" /></span>
                     </div>
                     <div className="nav-content2 text-center text-md-left">
-                        <p className="p fs-3 fw-bold">Box Pizza</p>
+                        <span className="p fs-3 fw-bold">Box Pizza</span>
                     </div>
                     <div>
-                        <Button variant="secondary" className="nav-content3" onClick={Redirect}>
-                            <div className="back-btn fs-5">
+                        <Button variant="danger" className="nav-content3" onClick={Redirect}>
+                            <div className="back-btn fs-6">
                                 <i className="bi bi-box-arrow-in-left text-light fw-bold"></i><span className="back">Back to Login</span>
                             </div>
                         </Button>
                     </div>
                 </div>
+                <Offcanvas show={show} onHide={handleClose} backdrop={false} scroll={true}>
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>Edit Product</Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body style={{ backgroundColor: "#435c70" }}>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="productName">
+                                <Form.Label className="text-warning">Product Name</Form.Label>
+                                <Form.Control type="text" name="name" value={editProduct.name || ''} onChange={(e) => setEditProduct({ ...editProduct, name: e.target.value })} placeholder="Enter product name" />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="productDescription">
+                                <Form.Label className="text-warning">Product Description</Form.Label>
+                                <Form.Control as="textarea" name="description" value={editProduct.description || ''} onChange={(e) => setEditProduct({ ...editProduct, description: e.target.value })} rows={3} placeholder="Enter product description" />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="productPrice">
+                                <Form.Label className="text-warning">Product Price</Form.Label>
+                                <Form.Control type="text" name="price" value={editProduct.price || ''} onChange={(e) => setEditProduct({ ...editProduct, price: e.target.value })} placeholder="Enter product price" />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="productImage">
+                                <Form.Label className="text-warning">Product Image</Form.Label>
+                                <Form.Control type="file" name="image" onChange={handleFileChange} />
+                                {selectedImage ? (
+                                    <div className="text-center mt-3">
+                                        <img
+                                            src={URL.createObjectURL(selectedImage)}
+                                            alt="Selected"
+                                            style={{ maxWidth: '100%', height: 'auto' }}
+                                        />
+                                        <Button variant="danger" onClick={() => setSelectedImage(null)} className="mt-2">Remove</Button>
+                                    </div>
+                                ) : (
+                                    editProduct.image && (
+                                        <div className="text-center mt-3">
+                                            <img
+                                                src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${editProduct.image}`}
+                                                // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${editProduct.image}`}
+                                                alt="Selected"
+                                                style={{ maxWidth: '100%', height: 'auto' }}
+                                            />
+                                        </div>
+                                    )
+                                )}
+                            </Form.Group>
+
+                            <div className="text-center">
+                                <Button variant="danger" onClick={handleUpdate}>Update Product</Button>
+                            </div>
+                        </Form>
+                    </Offcanvas.Body>
+                </Offcanvas>
                 <Container fluid className="mt-3">
                     <Row>
-                        <Col xs={12} md={2} className="mb-3 mb-md-0">
+                        <Col xs={12} sm={12} md={12} lg={2} className="mb-3 mb-md-5">
                             <ListGroup className="border shadow">
                                 <Nav className="flex-column nav-pills">
                                     <ListGroup.Item>
@@ -307,36 +307,36 @@ function Admin() {
                                 </Nav>
                             </ListGroup>
                         </Col>
-                        <Col xs={12} md={10}>
+                        <Col xs={12} sm={12} md={12} lg={10}>
                             <div className="tab-content">
                                 <div className={`tab-pane fade ${activeTab === 'add' && 'show active'}`} id="add-content" role="tabpanel">
                                     <Container>
                                         <Row>
-                                            <Col xs={12} lg={10} xl={9} className="mb-3">
+                                            <Col xs={12} lg={10} xl={9} className="">
                                                 <div className="a1 p-3" style={{ backgroundColor: "#435c70" }}>
+                                                    {/* <Row> */}
+                                                    {/* <Col xs={12}> */}
+                                                    <h2 className="a1-title">Add Product</h2>
+                                                    {/* </Col> */}
+                                                    {/* </Row> */}
                                                     <Row>
-                                                        <Col xs={12}>
-                                                            <h2 className="a1-title">Add Product</h2>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col xs={12} md={6}>
-                                                            <Form>
-                                                                <Form.Group className="mb-3">
-                                                                    <Form.Label htmlFor="name" className="text-light">Product Name</Form.Label>
+                                                        <Col xs={12} sm={12} md={6}>
+                                                            <Form className="text-start">
+                                                                <Form.Group className="mb-3 w-100">
+                                                                    <Form.Label htmlFor="name" className="text-warning">Product Name</Form.Label>
                                                                     <Form.Control type="text" name="name" value={data.name} onChange={handleChange} />
                                                                 </Form.Group>
-                                                                <Form.Group className="mb-3">
-                                                                    <Form.Label htmlFor="description" className="text-light">Product Description</Form.Label>
+                                                                <Form.Group className="mb-3 w-100">
+                                                                    <Form.Label htmlFor="description" className="text-warning">Product Description</Form.Label>
                                                                     <Form.Control as="textarea" name="description" value={data.description} onChange={handleChange} />
                                                                 </Form.Group>
-                                                                <Form.Group className="mb-3">
-                                                                    <Form.Label htmlFor="price" className="text-light">Product Price</Form.Label>
+                                                                <Form.Group className="mb-3 w-100">
+                                                                    <Form.Label htmlFor="price" className="text-warning">Product Price</Form.Label>
                                                                     <Form.Control type="text" name="price" value={data.price} onChange={handleChange} />
                                                                 </Form.Group>
                                                             </Form>
                                                         </Col>
-                                                        <Col xs={12} md={6}>
+                                                        <Col xs={12} sm={12} md={6}>
                                                             <div className="file mt-3 mb-3">
                                                                 <Form.Control
                                                                     type="file"
@@ -370,53 +370,60 @@ function Admin() {
                                 </div>
 
                                 <div className={`tab-pane fade ${activeTab === 'update' && 'show active'}`} id="update-content" role="tabpanel">
-                                    <Container>
+                                    <Container fluid>
                                         <Row>
-                                            <Col xs={12} lg={10} xl={9} className="mb-3">
-                                                <div className="a1 p-3">
+                                            <Col xs={12} lg={10} xl={12} className="mb-3">
+                                                <div className="a1 p-2">
                                                     <Row>
                                                         <Col xs={12}>
                                                             <h2 className="a1-title">Update Product</h2>
                                                         </Col>
                                                         <Col xs={12}>
-                                                            <Table striped bordered hover className="align-middle text-center">
-                                                                <thead className="edit-delete-table">
-                                                                    <tr>
-                                                                        <th>#</th>
-                                                                        <th className="edit-delete-table">Product Image</th>
-                                                                        <th className="edit-delete-table">Product Name</th>
-                                                                        <th className="edit-delete-table">Product Description</th>
-                                                                        <th className="edit-delete-table">Product Price</th>
-                                                                        <th className="edit-delete-table">Actions</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                {products.map((product, index) => (
-                                                                    <tbody key={product._id} className="edit-delete-table">
+                                                            <div className="table-responsive-sm">
+                                                                <Table striped bordered hover className="align-middle text-center">
+                                                                    <thead className="edit-delete-table">
                                                                         <tr>
-                                                                            <td className="edit-delete-table fw-bold">{index + 1}</td>
-                                                                            <td className="d-flex justify-content-center">
-                                                                                <img
-                                                                                    src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
-                                                                                    // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`}
-                                                                                    alt="#"
-                                                                                    style={{ width: '100px', height: 'auto' }}
-                                                                                />
-                                                                            </td>
-                                                                            <td className="edit-delete-table">{product.name}</td>
-                                                                            <td className="edit-delete-table">{product.description}</td>
-                                                                            <td className="edit-delete-table">{product.price}</td>
-                                                                            <td>
-                                                                                <div>
-                                                                                    <Button variant="outline-primary" title="Edit" onClick={() => handleEdit(product)}>
-                                                                                        <i className="bi bi-pencil-square"></i>
-                                                                                    </Button>&nbsp;&nbsp;
-                                                                                    <Button variant="outline-danger" onClick={() => { deleteProduct(product._id); }} title="Delete"><i className="bi bi-trash3-fill"></i></Button>
-                                                                                </div>
-                                                                            </td>
+                                                                            <th>#</th>
+                                                                            <th className="edit-delete-table">Product Image</th>
+                                                                            <th className="edit-delete-table">Product Name</th>
+                                                                            <th className="edit-delete-table">Product Description</th>
+                                                                            <th className="edit-delete-table">Product Price</th>
+                                                                            <th className="edit-delete-table">Actions</th>
                                                                         </tr>
-                                                                    </tbody>
-                                                                ))}
-                                                            </Table>
+                                                                    </thead>
+                                                                    {products.map((product, index) => (
+                                                                        <tbody key={product._id} className="edit-delete-table">
+                                                                            <tr>
+                                                                                <td className="edit-delete-table fw-bold">{index + 1}</td>
+                                                                                <td className="d-flex justify-content-center">
+                                                                                    <img
+                                                                                        src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
+                                                                                        alt="Product"
+                                                                                        className="product-img"
+                                                                                    />
+                                                                                </td>
+                                                                                <td className="edit-delete-table">{product.name}</td>
+                                                                                <td className="edit-delete-table">{product.description}</td>
+                                                                                <td className="edit-delete-table">{product.price}</td>
+                                                                                <td>
+                                                                                    <div className="action-buttons d-flex justify-content-center align-items-center gap-2">
+                                                                                        <Button variant="outline-primary" title="Edit" onClick={() => handleEdit(product)}>
+                                                                                            <i className="bi bi-pencil-square"></i>
+                                                                                        </Button>
+                                                                                        <Button
+                                                                                            variant="outline-danger"
+                                                                                            onClick={() => { deleteProduct(product._id); }}
+                                                                                            title="Delete"
+                                                                                        >
+                                                                                            <i className="bi bi-trash3-fill"></i>
+                                                                                        </Button>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    ))}
+                                                                </Table>
+                                                            </div>
                                                         </Col>
                                                     </Row>
                                                 </div>
@@ -443,35 +450,39 @@ function Admin() {
                                                                 className="mb-3"
                                                             />
                                                         </Col>
-                                                        <Col xs={12}>
-                                                            <Table striped bordered hover className="align-middle text-center">
-                                                                <thead className="edit-delete-table">
-                                                                    <tr>
-                                                                        <th>#</th>
-                                                                        <th className="edit-delete-table">Product Image</th>
-                                                                        <th className="edit-delete-table">Product Name</th>
-                                                                        <th className="edit-delete-table">Product Description</th>
-                                                                        <th className="edit-delete-table">Product Price</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    {filteredProducts.map((product, index) => (
-                                                                        <tr key={product._id}>
-                                                                            <td className="edit-delete-table fw-bold">{index + 1}</td>
-                                                                            <td className="d-flex justify-content-center">
-                                                                                <img
-                                                                                    src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
-                                                                                    // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
-                                                                                    alt="Product" style={{ width: '100px', height: 'auto' }} />
-                                                                            </td>
-                                                                            <td className="edit-delete-table">{product.name}</td>
-                                                                            <td className="edit-delete-table">{product.description}</td>
-                                                                            <td className="edit-delete-table">{product.price}</td>
+                                                        <div className="table-responsive-sm">
+                                                            <Col xs={12}>
+                                                                <Table striped bordered hover className="align-middle text-center">
+                                                                    <thead className="edit-delete-table">
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th className="edit-delete-table">Product Image</th>
+                                                                            <th className="edit-delete-table">Product Name</th>
+                                                                            <th className="edit-delete-table">Product Description</th>
+                                                                            <th className="edit-delete-table">Product Price</th>
                                                                         </tr>
-                                                                    ))}
-                                                                </tbody>
-                                                            </Table>
-                                                        </Col>
+                                                                    </thead>
+                                                                    <tbody className="edit-delete-table">
+                                                                        {filteredProducts.map((product, index) => (
+                                                                            <tr key={product._id}>
+                                                                                <td className="edit-delete-table fw-bold">{index + 1}</td>
+                                                                                <td className="d-flex justify-content-center">
+                                                                                    <img
+                                                                                        src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
+                                                                                        // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
+                                                                                        alt="Product"
+                                                                                        className="product-img"
+                                                                                    />
+                                                                                </td>
+                                                                                <td className="edit-delete-table">{product.name}</td>
+                                                                                <td className="edit-delete-table">{product.description}</td>
+                                                                                <td className="edit-delete-table">{product.price}</td>
+                                                                            </tr>
+                                                                        ))}
+                                                                    </tbody>
+                                                                </Table>
+                                                            </Col>
+                                                        </div>
                                                     </Row>
                                                 </div>
                                             </Col>
