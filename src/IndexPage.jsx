@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './App.css'; // Import your component-specific CSS file
 import img from '../src/images/pizzahutimg1.jpg'
 import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 // import Swal from 'sweetalert2';
 import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
-
+import PromotionList from './components/PromotionList';
+import TopRatedList from './components/TopRatedList';
+import FavoritesList from './components/FavoritesList';
+import NearMeList from './components/NearMeList';
+import BestSellerList from './components/BestSellerList';
+import AllItemsList from './components/AllItemList';
 const IndexComponent = () => {
 
     const [cart, setCart] = useState([]);
@@ -18,11 +23,10 @@ const IndexComponent = () => {
         fetchProducts();
     }, []);
     const [isSidebarVisible, setSidebarVisible] = useState(true); // Sidebar visibility state
-
     const toggleSidebar = () => {
         setSidebarVisible(!isSidebarVisible); // Toggle sidebar visibility
     };
-
+    
     const fetchProducts = async () => {
         try {
             const response = await axios.get('https://task-backend-v1-fkb7.onrender.com/api/product/list');
@@ -53,7 +57,29 @@ const IndexComponent = () => {
             }
         });
     };
+    const [selectedMenu, setSelectedMenu] = useState('All');
 
+    const renderDashboardContent = () => {
+        switch (selectedMenu) {
+            case 'Favorites':
+                return <FavoritesList favorites={favorites} addToCart={addToCart} 
+                addToFavorite={addToFavorite}  />;
+            case 'Best Seller':
+                return <BestSellerList />;
+            case 'Near Me':
+                return <NearMeList />;
+            case 'Promotion':
+                return <PromotionList />;
+            case 'Top Rated':
+                return <TopRatedList />;
+            default:
+                return <AllItemsList 
+                additems={additems} 
+                addToCart={addToCart} 
+                addToFavorite={addToFavorite} 
+                favorites={favorites} />;
+        };
+    };
     const increaseQuantity = (productId) => {
         setCart(prevCart =>
             prevCart.map(item =>
@@ -106,7 +132,7 @@ const IndexComponent = () => {
             </label>
             <div className="toggle-icon" onClick={toggleSidebar}>
                 {isSidebarVisible ? (
-                    <FaArrowCircleRight className='fs-6'/>
+                    <FaArrowCircleRight className='fs-6' />
                     // Right arrow icon
                 ) : (
                     <FaArrowCircleLeft className='fs-6' /> // Left arrow icon (to show the sidebar again)
@@ -137,40 +163,7 @@ const IndexComponent = () => {
                     </div>
                 </div>
             )}
-            {/* <div className="sidebar">
-                <div className="sidebar-menu">
-                    <a href="/"><i className="bi bi-search fs-6"></i>
-                    Search</a>
-                    
-                </div>
-                
-                <div className="sidebar-menu">
-                    <a href="/indexpage"><i className="bi bi-house-door-fill fs-6"></i>
-                        Home</a>
-                       
-                </div>
 
-                <div className="sidebar-menu">
-                    <a href="/signup"><i className="bi bi-person-circle fs-6"></i>
-                        Register</a>
-                        
-                </div>
-                <div className="sidebar-menu">
-                    <a href="/"><i className="bi bi-person-add fs-6"></i>
-                        Login</a>
-                        
-                </div>
-                <div className="sidebar-menu">
-                    <a href='/signup'><i className="bi bi-gear fs-6"></i>
-                        Settings</a>
-                       
-                </div>
-
-                <div className="sidebar-menu">
-                    <a onClick={{Logout}} href="/" style={{border:'none',background:'none'}}><i className="bi bi-box-arrow-right fs-6"></i>Logout</a>
-                    
-                </div>
-            </div> */}
             {/* Dashboard */}
             <div className="dashborad" style={{ backgroundColor: '#fecb40' }}>
                 <div className="dashborad-items">
@@ -181,21 +174,25 @@ const IndexComponent = () => {
                 </div>
                 <h3 className="dashboard-title">Recommended Food For You</h3>
                 <div className="dashboard-menu">
-                    <a href='/'>Favorites</a>
+                    {/* <a href='/'>Favorites</a>
                     <a href='/'>Best Seller</a>
                     <a href='/'>Near Me</a>
                     <a href='/'>Promotion</a>
                     <a href='/'>Top Rated</a>
-                    <a href='/'>All</a>
+                    <a href='/'>All</a> */}
+                    <button onClick={() => setSelectedMenu('Favorites')} className="menu-button">Favorites</button>
+                    <button onClick={() => setSelectedMenu('Best Seller')} className="menu-button">Best Seller</button>
+                    <button onClick={() => setSelectedMenu('Near Me')} className="menu-button">Near Me</button>
+                    <button onClick={() => setSelectedMenu('Promotion')} className="menu-button">Promotion</button>
+                    <button onClick={() => setSelectedMenu('Top Rated')} className="menu-button">Top Rated</button>
+                    <button onClick={() => setSelectedMenu('All')} className="menu-button">All</button>
                 </div>
                 <div className="dashboard-content">
-                    {
+                    {/* {
                         Array.isArray(additems) && additems.slice(0, 100).map((product) => (
-                            // <div key={a.id}>
                             <div key={product._id} className="dashboard-menus" style={{ backgroundColor: 'black' }}>
                                 <img
                                     src={`https://task-backend-v1-fkb7.onrender.com/public/data/uploads/${product.image}`}
-                                    // src={`https://task-backend-v1-fkb7.onrender.com/data/uploads/${product.image}`} 
                                     alt="#" className="img-fluid dash-image" style={{ overflow: 'hidden', width: '400px', height: '150px' }} />
                                 <div className="details">
                                     <h5 style={{ fontSize: '15px' }}>{product.name}<span>Rs.{product.price}</span></h5>
@@ -207,9 +204,9 @@ const IndexComponent = () => {
                                     </Button>
                                 </div>
                             </div>
-                            // </div>
                         ))
-                    }
+                    } */}
+                    {renderDashboardContent()}
                 </div>
             </div>
             {/* Order dashboard */}

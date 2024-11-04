@@ -145,7 +145,8 @@
   box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1); 
   cursor: pointer;
   width: auto; /* Set to auto for better control */
-  padding: 5px; /* Added padding for better visual appeal */
+  padding: 5px; 
+  /* Added padding for better visual appeal */
   background-color: transparent;
   color: red;
   opacity: 0;
@@ -418,7 +419,7 @@ p {
   overflow-x: auto;
 }
 
-.dashboard-menu>a {
+.dashboard-menu>button {
   text-decoration: none;
   text-align: center;
   padding: 0.5rem 0;
@@ -429,7 +430,7 @@ p {
   background-color: #000;
 }
 
-.dashboard-menu>a:hover {
+.dashboard-menu>button:hover {
   background-color: #df113c;
   color: #f2f2f2;
 }
@@ -574,7 +575,7 @@ p {
 }
 
 #cart:checked~.dashborad {
-  padding-right: 10px;
+  padding-right: 2px;
 }
 
 #cart:checked~.dashboard-order {
@@ -632,3 +633,15 @@ p {
   
   color: #fecb40;
 } 
+
+.menu-button {
+  background: none;
+  border: none;
+  color: #007bff; /* Link color */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.menu-button:hover {
+  text-decoration: none;
+}
